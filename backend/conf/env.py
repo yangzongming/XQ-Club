@@ -21,7 +21,7 @@ DATABASE_PORT = 3306
 # # 数据库用户名
 DATABASE_USER = "root"
 # # 数据库密码
-DATABASE_PASSWORD = "xingqi"
+DATABASE_PASSWORD = "xingqi123"
 
 # 表前缀
 TABLE_PREFIX = "dvadmin_"
