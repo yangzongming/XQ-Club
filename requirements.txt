@@ -1,5 +1,0 @@
-requests
-pymssql
-openpyxl
-pyodbc
-bottle
