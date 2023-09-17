@@ -12,7 +12,7 @@ from application.settings import BASE_DIR
 
 # 使用mysql时，改为此配置
 DATABASE_ENGINE = "django.db.backends.mysql"
-DATABASE_NAME = 'django-vue-admin' # mysql 时使用
+DATABASE_NAME = 'django_vue_admin' # mysql 时使用
 
 # 数据库地址 改为自己数据库地址
 DATABASE_HOST = "127.0.0.1"
