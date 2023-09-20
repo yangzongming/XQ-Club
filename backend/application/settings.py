@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "corsheaders",  # 注册跨域app
     'rest_framework_simplejwt.token_blacklist',
     "dvadmin.system",
+    "xingqi", #增加星奇APP
     "drf_yasg",
     "captcha",
     'channels',
