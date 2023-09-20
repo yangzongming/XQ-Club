@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 
 # Create your views here.
 
-def IndexView(APIView):
+class IndexView(APIView):
     """
         后台隐私政策
         """
