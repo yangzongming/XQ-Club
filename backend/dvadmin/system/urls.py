@@ -16,6 +16,7 @@ from dvadmin.system.views.operation_log import OperationLogViewSet
 from dvadmin.system.views.role import RoleViewSet
 from dvadmin.system.views.system_config import SystemConfigViewSet
 from dvadmin.system.views.user import UserViewSet
+from dvadmin.systen.views.xingqi.xingqi_test import IndexView
 
 system_url = routers.SimpleRouter()
 system_url.register(r'menu', MenuViewSet)
@@ -42,5 +43,8 @@ urlpatterns = [
     path('dept_lazy_tree/', DeptViewSet.as_view({'get': 'dept_lazy_tree'})),
     path('clause/privacy.html', PrivacyView.as_view()),
     path('clause/terms_service.html', TermsServiceView.as_view()),
+
+    #星奇测试
+    path('xingqi/index', IndexView.as_view),
 ]
 urlpatterns += system_url.urls
