@@ -45,6 +45,6 @@ urlpatterns = [
     path('clause/terms_service.html', TermsServiceView.as_view()),
 
     #星奇测试
-    path(r'^xingqi/index/$', xingqi_erp.index, name="index"),
+    path('xingqi/index', xingqi_erp.index, name="index"),
 ]
 urlpatterns += system_url.urls
