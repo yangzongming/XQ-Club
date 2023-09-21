@@ -21,8 +21,8 @@ def index(request):
 def testJson(request):
     data = {'name': 'John', 'age': 25}
     json_data = json.dumps(data)
-    list = craw_requestion_detail('123456')
-    return response_page_success(message="成功了",data = json_data, data_list=list)
+    dlist = craw_requestion_detail('123456')
+    return response_page_success(message="成功了",data = json_data, data_list=dlist)
 
 #获取采购申请表明细
 def craw_requestion_detail(fid):
