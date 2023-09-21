@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 import json
-from check import request_verify
+from .check import request_verify
 
 
 def index(request):
