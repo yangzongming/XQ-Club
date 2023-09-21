@@ -2,7 +2,6 @@ import re
 import sys
 import datetime
 import requests
-import pymssql
 import time, os, tarfile
 import openpyxl
 import pyodbc
