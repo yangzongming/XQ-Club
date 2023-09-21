@@ -53,7 +53,7 @@ def craw_requestion_detail(fid):
     # 处理料号
     limit = 6
     row_number = 0
-
+    datalist = []
     for one in recSet:
         #print(str(one.FID))
         #print(str(one.FBILLNO))
