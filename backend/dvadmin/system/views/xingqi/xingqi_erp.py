@@ -53,6 +53,7 @@ def craw_requestion_detail(fid):
     # 处理料号
     limit = 6
     row_number = 0
+
     for one in recSet:
         #print(str(one.FID))
         #print(str(one.FBILLNO))
@@ -70,9 +71,9 @@ def craw_requestion_detail(fid):
                          WHERE pur_requestion.FBILLNO = ?
                          ORDER BY pur_requestion.FCREATEDATE; '''
         rec = cursor.execute(sql_detail, FBILLNO)
-        list = rec.fetchall()
-        sheet1.insert_rows(7, len(list))
-        for line in list:
+        datalist = rec.fetchall()
+        sheet1.insert_rows(7, len(datalist))
+        for line in datalist:
             sheet1['A' + str(limit + row_number)] = row_number + 1
             sheet1['B' + str(limit + row_number)] = pr_dic['pr_project']
             sheet1['C' + str(limit + row_number)] = line.FNUMBER
@@ -86,7 +87,7 @@ def craw_requestion_detail(fid):
     sheet1['A3'] = u'采购申请单编号：' + pr_dic['no']
     sheet1['R3'] = u'期望交期' + pr_dic['request_date']
     refer_excel.save( "/opt/excel/" + fid + '.xlsx')
-    return list
+    return datalist
 
 
 #封装请求
