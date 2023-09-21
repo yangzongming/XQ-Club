@@ -56,7 +56,8 @@ def craw_requestion_detail(fid):
     # 处理料号
     limit = 6
     row_number = 0
-    datalist = []
+    xls_lines = []
+
     for one in recSet:
         #print(str(one.FID))
         #print(str(one.FBILLNO))
@@ -86,11 +87,18 @@ def craw_requestion_detail(fid):
             sheet1['H' + str(limit + row_number)] = line.FMAXPRICE
             sheet1['I' + str(limit + row_number)] = line.FMINPRICE
             row_number += 1
+
+            dic = {}
+            dic['A'] = row_number + 1
+            dic['B'] = pr_dic['pr_project']
+            dic['C'] = line.FNUMBER
+            dic['D'] = line.FNAME
+            xls_lines.append(dic)
     #写数据
     sheet1['A3'] = u'采购申请单编号：' + pr_dic['no']
     sheet1['R3'] = u'期望交期' + pr_dic['request_date']
     refer_excel.save( "/opt/excel/" + fid + '.xlsx')
-    return datalist
+    return xls_lines
 
 
 #封装请求
