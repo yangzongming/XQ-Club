@@ -1,8 +1,3 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-import json
-from .check import request_verify
-
 import re
 import sys
 import datetime
@@ -10,8 +5,13 @@ import requests
 import pymssql
 import time, os, tarfile
 import openpyxl
-import faulthandler
 import pyodbc
+
+from django.http import HttpResponse
+from django.shortcuts import render
+import json
+from .check import request_verify
+
 
 
 def index(request):
