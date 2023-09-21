@@ -21,8 +21,8 @@ def index(request):
 def testJson(request):
     data = {'name': 'John', 'age': 25}
     json_data = json.dumps(data)
-    craw_requestion_detail('123456')
-    return response_page_success(message="成功了",data = json_data)
+    list = craw_requestion_detail('123456')
+    return response_page_success(message="成功了",data = json_data, data_list=list)
 
 #获取采购申请表明细
 def craw_requestion_detail(fid):
@@ -54,9 +54,9 @@ def craw_requestion_detail(fid):
     limit = 6
     row_number = 0
     for one in recSet:
-        print(str(one.FID))
-        print(str(one.FBILLNO))
-        print(str(one.FAPPROVEDATE))
+        #print(str(one.FID))
+        #print(str(one.FBILLNO))
+        #print(str(one.FAPPROVEDATE))
         FBILLNO = str(one.FBILLNO)
         sql_detail = ''' SELECT pur_requestion.FID,   
                          material.FMATERIALID,material.F_XQZD_TEXT2,material.F_XQZD_TZBB, material_l.FSPECIFICATION, 
@@ -86,6 +86,7 @@ def craw_requestion_detail(fid):
     sheet1['A3'] = u'采购申请单编号：' + pr_dic['no']
     sheet1['R3'] = u'期望交期' + pr_dic['request_date']
     refer_excel.save( "/opt/excel/" + fid + '.xlsx')
+    return list
 
 
 #封装请求
