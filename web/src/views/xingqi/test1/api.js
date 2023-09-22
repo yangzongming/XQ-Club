@@ -1,9 +1,10 @@
 import { request } from '@/api/service'
+import { requestForMock } from '@/api/service'
 
 const urlPre = '/api/system/xingqi'
 
 export function GetList (query) {
-  return request({
+  return requestForMock({
     url: urlPre + '/testJson?fid=CGSQ000206',
     method: 'get',
     params: query
