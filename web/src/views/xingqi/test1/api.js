@@ -1,13 +1,21 @@
 import { request } from '@/api/service'
-import { requestForMock } from '@/api/service'
+import { requestForOutside } from '@/api/service'
 
-const urlPre = '/api/system/xingqi'
+const urlPre = 'http://172.17.1.249:9602/api/system/xingqi'
 
 export function GetList (query) {
-  return requestForMock({
+  return requestForOutside({
     url: urlPre + '/testJson?fid=CGSQ000206',
     method: 'get',
     params: query
+  }).then(ret=>{
+    //在这里改造成crud所需要的结果
+    ret.data = ret.data?ret.data : {}
+    ret.data.current = 1
+    ret.data.size = 10
+    ret.data.total = 100
+    ret.data.records = ret.dataList
+    return ret
   })
 }
 export function AddObj (obj) {

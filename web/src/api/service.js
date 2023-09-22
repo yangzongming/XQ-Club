@@ -37,10 +37,20 @@ export function getErrorMessage (msg) {
   return msg
 }
 
-function createService () {
+function createOutsideService(){
   // 创建一个 axios 实例
   const service = axios.create({
-    baseURL: util.baseURL(),
+    baseURL: '',
+    timeout: 20000,
+    paramsSerializer: (params) => qs.stringify(params, { indices: false })
+  })
+  return service
+}
+
+function createService (hasBaseURL) {
+  // 创建一个 axios 实例
+  const service = axios.create({
+    baseURL: hasBaseURL ? '' : util.baseURL(),
     timeout: 20000,
     paramsSerializer: (params) => qs.stringify(params, { indices: false })
   })
@@ -198,12 +208,16 @@ function createRequestFunction (service) {
 }
 
 // 用于真实网络请求的实例和请求方法
-export const service = createService()
+export const service = createService(false)
 export const request = createRequestFunction(service)
 
 // 用于模拟网络请求的实例和请求方法
-export const serviceForMock = createService()
+export const serviceForMock = createService(false)
 export const requestForMock = createRequestFunction(serviceForMock)
+
+// 用于访问外部网络
+export const serviceForOutside = createOutsideService()
+export const requestForOutside = createRequestFunction(serviceForOutside)
 
 // 网络请求数据模拟工具
 export const mock = new Adapter(serviceForMock)
