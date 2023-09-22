@@ -20,12 +20,11 @@ def index(request):
 @request_verify('get')
 def testJson(request):
     data = {'name': 'John', 'age': 25}
-
     fid = request.GET.get('fid')
     json_data = json.dumps(data)
     dlist = craw_requestion_detail(fid)
-    d = json.dumps(dlist)
-    return response_page_success(message="成功了",data = json_data, data_list=d)
+    #d = json.dumps(dlist)
+    return response_page_success(message="成功了", data_list=dlist)
 
 #获取采购申请表明细
 def craw_requestion_detail(fid):
