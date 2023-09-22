@@ -1,26 +1,12 @@
 import { request } from '@/api/service'
 
+const urlPre = '/api/system/xingqi'
+
 export function GetList (query) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        code: 2000,
-        msg: 'success',
-        data: {
-          total: 99,
-          current: query.current,
-          size: 20,
-          data: [
-            { id: 1, select1: '1', select2: 'sz,wh' },
-            { id: 2, select1: '1', select2: 'sz,sh' },
-            { id: 3, select1: '0', select2: 'sz,gz' },
-            { id: 4, select1: '1', select2: 'sz' },
-            { id: 5, select1: '1', select2: 'sz,sh' },
-            { id: 6, select1: '1', select2: 'sz' }
-          ]
-        }
-      })
-    })
+  return request({
+    url: urlPre + '/testJson?fid=CGSQ000206',
+    method: 'get',
+    params: query
   })
 }
 export function AddObj (obj) {
