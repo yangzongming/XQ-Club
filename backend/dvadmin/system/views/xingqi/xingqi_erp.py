@@ -24,7 +24,7 @@ def testJson(request):
     json_data = json.dumps(data)
     dlist = craw_requestion_detail(fid)
     #d = json.dumps(dlist)
-    return response_page_success(message="成功了", records=dlist)
+    return response_page_success(message="成功了", records=dlist, total=100, size= 10, current= 1)
 
 #获取采购申请表明细
 def craw_requestion_detail(fid):
