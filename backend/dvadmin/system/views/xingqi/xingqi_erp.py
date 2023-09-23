@@ -306,7 +306,7 @@ def craw_purcharse_detail():
             '[采购入库]原单编码': line[95],
         })
     return {
-        "data": xls_lines,
+        "data": xls_lines[:100],
         "total": len(xls_lines),
         "limit": 100,
         "page": 1,

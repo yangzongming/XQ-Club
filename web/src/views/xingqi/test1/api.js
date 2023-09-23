@@ -5,7 +5,7 @@ const urlPre = 'http://172.17.1.249:9602/api/system/xingqi'
 
 export function GetList (query) {
   return requestForOutside({
-    url: urlPre + '/testJson?fid=CGSQ000206',
+    url: urlPre + '/get_purcharse_track_detail',
     method: 'get',
     params: query
   })
