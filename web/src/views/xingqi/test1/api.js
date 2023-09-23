@@ -8,14 +8,6 @@ export function GetList (query) {
     url: urlPre + '/testJson?fid=CGSQ000206',
     method: 'get',
     params: query
-  }).then(ret=>{
-    //在这里改造成crud所需要的结果
-    ret.data = ret.data?ret.data : {}
-    ret.data.current = 1
-    ret.data.size = 10
-    ret.data.total = 100
-    ret.data.records = ret.dataList
-    return ret
   })
 }
 export function AddObj (obj) {
