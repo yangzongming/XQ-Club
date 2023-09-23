@@ -30,7 +30,6 @@ def get_purcharse_track_detail(request):
     return response_page_success(message="成功了", data=dic["data"], total=dic["total"], limit= dic["limit"], page= dic["page"])
 
 def craw_purcharse_detail():
-    print("123")
     conn = pyodbc.connect('Driver={SQL Server};'
                           'Server=172.17.0.239,1433;'
                           'Database=AIS20230524185151;'
@@ -306,7 +305,6 @@ def craw_purcharse_detail():
             '[采购入库]原单类型': line[94],
             '[采购入库]原单编码': line[95],
         })
-    print(xls_lines)
     return {
         "data": xls_lines,
         "total": len(xls_lines),
