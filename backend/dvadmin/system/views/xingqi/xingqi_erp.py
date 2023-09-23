@@ -24,7 +24,7 @@ def testJson(request):
     json_data = json.dumps(data)
     dlist = craw_requestion_detail(fid)
     #d = json.dumps(dlist)
-    return response_page_success(message="成功了", data_list=dlist)
+    return response_page_success(message="成功了", records=dlist)
 
 #获取采购申请表明细
 def craw_requestion_detail(fid):
@@ -104,19 +104,20 @@ def craw_requestion_detail(fid):
 def response_success(message, data=None, data_list=[]):
     return HttpResponse(json.dumps({
         'code': 200,  # code由前后端配合指定
-        'message': message,  # 提示信息
+        'msg': message,  # 提示信息
         'data': data,  # 返回单个对象
         'dataList': data_list  # 返回对象数组
     }, ensure_ascii=False), 'application/json')
 
 
-def response_page_success(message, data=None, data_list=[], total=None, page=None, pageSize=None):
+def response_page_success(message, records=[], total=None, current=None, size=None):
     return HttpResponse(json.dumps({
         'code': 200,  # code由前后端配合指定
-        'message': message,  # 提示信息
-        'data': data,  # 返回单个对象
-        'dataList': data_list,  # 返回对象数组
-        'total': total,  # 记录总数
-        'page': page,  # 当前页面
-        'pageSize': pageSize  # 当前页面分页大小
+        'msg': message,  # 提示信息
+        'data': {
+            'current' : current,
+            'size' : size,
+            'total' : total,
+            'records' : records,
+        },  # 返回单个对象
     }, ensure_ascii=False), 'application/json')
