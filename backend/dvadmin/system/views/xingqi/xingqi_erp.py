@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 import json
 from .check import request_verify
-from dvadmin.system.utils.DateEncode import DateEncoder
+from dvadmin.utils.DateEncode import DateEncoder
 
 
 def index(request):
