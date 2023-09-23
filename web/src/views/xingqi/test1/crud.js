@@ -16,11 +16,23 @@ export const crudOptions = (vm) => {
     columns: [
       {
         title: '编码',
-        key: 'id',
-        width: 90,
-        form: {
-          disabled: true
-        }
+        key: 'A',
+        width: 90
+      },
+      {
+        title: '看法',
+        key: 'B',
+        width: 90
+      },
+      {
+        title: '什么',
+        key: 'C',
+        width: 90
+      },
+      {
+        title: '编码',
+        key: 'D',
+        width: 90
       }
     ]
   }
