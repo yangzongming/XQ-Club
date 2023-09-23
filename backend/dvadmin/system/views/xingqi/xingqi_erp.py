@@ -205,8 +205,10 @@ def craw_purcharse_detail():
 	    ) AS STKIE ON STKIE.[【采购入库】源单编号] = purrey.[【收料通知单】编号] 
 	    AND STKIE.[【采购入库】物料编码ID] = purrey.[【收料通知单】物料ID] """
     recSet = cursor.execute(sql)
+    datalist = recSet.fetchall()
+    for line in datalist:
+        print(line)
     xls_lines = []
-    print(recSet)
 
 #获取采购申请表明细
 def craw_requestion_detail(fid):
