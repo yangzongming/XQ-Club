@@ -47,5 +47,6 @@ urlpatterns = [
     #星奇测试
     path('xingqi/index', xingqi_erp.index, name="index"),
     path('xingqi/testJson', xingqi_erp.testJson, name="testJson"),
+    path('xingqi/get_purcharse_track_detail',xingqi_erp.get_purcharse_track_detail,name="get_purcharse_track_detail"),
 ]
 urlpatterns += system_url.urls

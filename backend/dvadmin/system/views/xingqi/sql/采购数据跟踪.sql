@@ -1,45 +1,8 @@
-import re
-import sys
-import datetime
-import requests
-import time, os, tarfile
-import openpyxl
-import pyodbc
-
-from django.http import HttpResponse
-from django.shortcuts import render
-import json
-from .check import request_verify
-
-
-
-def index(request):
-    html = '<h1>星奇测试------ Leo Hello World， I am Django。</h1>'
-    return HttpResponse(html, status=200)
-
-def testJson(request):
-    data = {'name': 'John', 'age': 25}
-    fid = request.GET.get('fid')
-    json_data = json.dumps(data)
-    dlist = craw_requestion_detail(fid)
-    #d = json.dumps(dlist)
-    return response_page_success(message="成功了", data=dlist, total=100, limit= 10, page= 1)
-
-def get_purcharse_track_detail(request):
-    dlist = craw_purcharse_detail()
-    return response_page_success(message="成功了", data=dlist, total=100, limit= 10, page= 1)
-
-def craw_purcharse_detail():
-    print("123")
-    conn = pyodbc.connect('Driver={SQL Server};'
-                          'Server=172.17.0.239,1433;'
-                          'Database=AIS20230524185151;'
-                          'Uid=sa;'
-                          'PWD=xqerp!@#2023;'
-                          'Trusted_Connection=no;'
-                          'TDS_Version=8.0')
-    cursor = conn.cursor()
-    sql = """ SELECT * FROM (SELECT
+SELECT
+	* 
+FROM
+	(
+	SELECT
 		purr.FBILLNO AS "【采购申请】单号",
 		BASL.FNAME AS "【采购申请】归属项目",
 		emp.FNAME AS "【采购申请】申请人",
@@ -60,7 +23,7 @@ def craw_purcharse_detail():
 		purer.FOrderQty AS "【采购申请】订单数量",
 		purer.FBaseStockQty AS "【采购申请】入库数量(基本单位)",
 		purer.FBaseReceiveQty AS "【采购申请】收料数量(基本单位)" 
-	    FROM
+	FROM
 		T_PUR_REQENTRY AS pure
 		LEFT JOIN T_PUR_REQUISITION AS purr ON purr.fid  = pure.fid
 		LEFT JOIN T_PUR_REQENTRY_R AS purer ON pure.fentryid = purer.fentryid
@@ -85,11 +48,11 @@ def craw_purcharse_detail():
 			LEFT JOIN T_HR_EMPINFO_L AS EMPL ON EMP.fid = EMPL.fid
 			LEFT JOIN T_BD_STAFF AS BDS ON BDS.FNUMBER = EMP.FNUMBER 
 		) EMP ON emp.FSTAFFID = purr.FAPPLICANTID 
-	    WHERE
+	WHERE
 		purr.FApplicationDate > '2023-7-31' 
-	    ) pure
-	    LEFT JOIN (
-	    SELECT
+	) pure
+	LEFT JOIN (
+	SELECT
 		purp.FBillNo AS "【采购订单】编号",
 		purp.FDocumentStatus AS "【采购订单】单据状态",
 		purp.FDate AS "【采购订单】采购日期",
@@ -116,17 +79,17 @@ def craw_purcharse_detail():
 		purper.FDEMANDBILLNO AS "【采购订单】需求单据编号",
 		purper.FDEMANDBILLENTRYSEQ AS "【采购订单】需求单据行号",
 		purper.FDEMANDBILLENTRYID AS "【采购订单】需求单据分录内码" 
-	    FROM
+	FROM
 		T_PUR_POORDERENTRY purpe
 		LEFT JOIN T_PUR_POORDERENTRY_D purped ON purpe.fentryid = purped.fentryid
 		LEFT JOIN T_PUR_POORDER AS purp ON purpe.fid = purp.fid
 		LEFT JOIN T_PUR_POORDERENTRY_R purper ON purper.fentryid = purpe.fentryid 
-	    WHERE
+	WHERE
 		purper.FSrcBillNo <> '' 
-	    ) purp ON pure.[【采购申请】单号] = purp.[【采购订单】源单编号] 
-	    AND pure.[【采购申请】物料ID] = purp.[【采购订单】物料ID]
-	    LEFT JOIN (
-	    SELECT
+	) purp ON pure.[【采购申请】单号] = purp.[【采购订单】源单编号] 
+	AND pure.[【采购申请】物料ID] = purp.[【采购订单】物料ID]
+	LEFT JOIN (
+	SELECT
 		purre.FBillNo AS "【收料通知单】编号",
 		purre.FDocumentStatus AS "【收料通知单】单据状态",
 		purre.FDate AS "【收料通知单】收料日期",
@@ -147,16 +110,16 @@ def craw_purcharse_detail():
 		purrey.FPOORDERENTRYID AS "【收料通知单】采购订单分录内码",
 		purrer.FConfirmDeliQty AS "【收料通知单】确认交货数量",
 		purrer.FConfirmDeliDate AS "【收料通知单】确认到货日期" 
-	    FROM
+	FROM
 		T_PUR_RECEIVEENTRY purrey
 		LEFT JOIN T_PUR_RECEIVE purre ON purrey.FID = purre.FID
 		LEFT JOIN T_PUR_RECEIVEENTRY_R purrer ON purrey.FENTRYID = purrer.FENTRYID 
-	    WHERE
+	WHERE
 		purre.FCreateDate > '2023-08-01' 
-	    ) AS purrey ON purrey.[【收料通知单】源单单号] = purp.[【采购订单】编号] 
-	    AND purrey.[【收料通知单】源单分录内码] = purp.[【采购订单】ID]
-	    LEFT JOIN (
-	    SELECT
+	) AS purrey ON purrey.[【收料通知单】源单单号] = purp.[【采购订单】编号] 
+	AND purrey.[【收料通知单】源单分录内码] = purp.[【采购订单】ID]
+	LEFT JOIN (
+	SELECT
 		QMI.FBillNo AS "【检验单】单号",
 		QMI.FDocumentStatus AS "【检验单】单据状态",
 		QMI.FApproverId AS "【检验单】审核人",
@@ -173,16 +136,16 @@ def craw_purcharse_detail():
 		QMIEA.FSrcInterId AS "【检验单】源单内码",
 		QMIEA.FSrcEntryId AS "【检验单】源单分录内码",
 		QMIEA.FSrcEntrySeq AS "【检验单】源单行号" 
-	    FROM
+	FROM
 		T_QM_INSPECTBILLENTRY AS QMIE
 		LEFT JOIN T_QM_INSPECTBILL AS QMI ON QMIE.FID = QMI.FID
 		LEFT JOIN T_QM_INSPECTBILLENTRY_A AS QMIEA ON QMIE.FENTRYID = QMIEA.FENTRYID 
-	    WHERE
+	WHERE
 		QMI.FCreateDate > '2023-01-01' 
-	    ) AS QMIE ON purrey.[【收料通知单】编号] = QMIE.[【检验单】源单编号] 
-	    AND purrey.[【收料通知单】ID] = QMIE.[【检验单】源单分录内码]
-	    LEFT JOIN (
-	    SELECT
+	) AS QMIE ON purrey.[【收料通知单】编号] = QMIE.[【检验单】源单编号] 
+	AND purrey.[【收料通知单】ID] = QMIE.[【检验单】源单分录内码]
+	LEFT JOIN (
+	SELECT
 		STKI.FBillNo AS "【采购入库】单号",
 		STKI.FDocumentStatus AS "【采购入库】单据状态",
 		STKI.FDate AS "【采购入库】入库日期",
@@ -199,107 +162,8 @@ def craw_purcharse_detail():
 		FPOOrderNo AS "【采购入库】订单单号",
 		FSRCBILLTYPEID AS "【采购入库】源单类型",
 		FSRCBillNo AS "【采购入库】源单编号" 
-	    FROM
+	FROM
 		T_STK_INSTOCKENTRY AS STKIE
 		LEFT JOIN T_STK_INSTOCK AS STKI ON STKI.FID = STKIE.FID 
-	    ) AS STKIE ON STKIE.[【采购入库】源单编号] = purrey.[【收料通知单】编号] 
-	    AND STKIE.[【采购入库】物料编码ID] = purrey.[【收料通知单】物料ID] """
-    recSet = cursor.execute(sql)
-    xls_lines = []
-    print(recSet)
-
-#获取采购申请表明细
-def craw_requestion_detail(fid):
-    #操作Excel
-    file_name = "/opt/excel/price.xlsx"
-    refer_excel = openpyxl.load_workbook(file_name)
-    sheet1 = refer_excel['比价表']
-
-    # 定义一个请购单数据dic
-    pr_dic = {}
-    pr_dic['no'] = fid  # 请购单号
-    pr_dic['request_date'] = '2023-08-26'  # 请购日期
-    pr_dic['request_person'] = 'leo yang'  # 请购人员
-    pr_dic['pr_project'] = 'H2-天一阁'
-    pr_dic['items'] = []
-
-    conn = pyodbc.connect('Driver={SQL Server};'
-                          'Server=172.17.0.239,1433;'
-                          'Database=AIS20230524185151;'
-                          'Uid=sa;'
-                          'PWD=xqerp!@#2023;'
-                          'Trusted_Connection=no;'
-                          'TDS_Version=8.0')
-    cursor = conn.cursor()
-    sql = ''' SELECT * FROM dbo.T_PUR_REQUISITION AS pur_requesition WHERE pur_requesition.FBILLNO = ?  '''
-    recSet = cursor.execute(sql,fid)
-
-    # 处理料号
-    limit = 6
-    row_number = 0
-    xls_lines = []
-
-    for one in recSet:
-        #print(str(one.FID))
-        #print(str(one.FBILLNO))
-        #print(str(one.FAPPROVEDATE))
-        FBILLNO = str(one.FBILLNO)
-        sql_detail = ''' SELECT pur_requestion.FID,   
-                         material.FMATERIALID,material.F_XQZD_TEXT2,material.F_XQZD_TZBB, material_l.FSPECIFICATION, 
-                         material_l.FNAME,material.FNUMBER, reqentry.FAPPROVEQTY ,
-                         materialpurchase.FMINPRICE,materialpurchase.FMAXPRICE 
-                         FROM dbo.T_PUR_REQUISITION AS pur_requestion 
-                         INNER JOIN dbo.T_PUR_REQENTRY AS reqentry on pur_requestion.FID = reqentry.FID
-                         INNER JOIN dbo.T_BD_MATERIAL AS material ON reqentry.FMATERIALID = material.FMATERIALID
-                         INNER JOIN dbo.T_BD_MATERIAL_L AS material_l ON material_l.FMATERIALID = material.FMATERIALID
-                         INNER JOIN dbo.T_BD_MATERIALPURCHASE AS materialpurchase ON materialpurchase.FMATERIALID = material.FMATERIALID
-                         WHERE pur_requestion.FBILLNO = ?
-                         ORDER BY pur_requestion.FCREATEDATE; '''
-        rec = cursor.execute(sql_detail, FBILLNO)
-        datalist = rec.fetchall()
-        sheet1.insert_rows(7, len(datalist))
-        for line in datalist:
-            sheet1['A' + str(limit + row_number)] = row_number + 1
-            sheet1['B' + str(limit + row_number)] = pr_dic['pr_project']
-            sheet1['C' + str(limit + row_number)] = line.FNUMBER
-            sheet1['D' + str(limit + row_number)] = line.FNAME
-            sheet1['F' + str(limit + row_number)] = line.FSPECIFICATION
-            sheet1['G' + str(limit + row_number)] = line.FAPPROVEQTY
-            sheet1['H' + str(limit + row_number)] = line.FMAXPRICE
-            sheet1['I' + str(limit + row_number)] = line.FMINPRICE
-            row_number += 1
-
-            dic = {}
-            dic['A'] = row_number + 1
-            dic['B'] = pr_dic['pr_project']
-            dic['C'] = line.FNUMBER
-            dic['D'] = line.FNAME
-            xls_lines.append(dic)
-    #写数据
-    sheet1['A3'] = u'采购申请单编号：' + pr_dic['no']
-    sheet1['R3'] = u'期望交期' + pr_dic['request_date']
-    refer_excel.save( "/opt/excel/" + fid + '.xlsx')
-    return xls_lines
-
-
-#封装请求
-def response_success(message, data=None, data_list=[]):
-    return HttpResponse(json.dumps({
-        'code': 200,  # code由前后端配合指定
-        'msg': message,  # 提示信息
-        'data': data,  # 返回单个对象
-        'dataList': data_list  # 返回对象数组
-    }, ensure_ascii=False), 'application/json')
-
-
-def response_page_success(message, data=[], total=None, page=None, limit=None):
-    return HttpResponse(json.dumps({
-        'code': 200,  # code由前后端配合指定
-        'msg': message,  # 提示信息
-        'data': {
-            'page' : page,
-            'limit' : limit,
-            'total' : total,
-            'data' : data,
-        },  # 返回单个对象
-    }, ensure_ascii=False), 'application/json')
+	) AS STKIE ON STKIE.[【采购入库】源单编号] = purrey.[【收料通知单】编号] 
+	AND STKIE.[【采购入库】物料编码ID] = purrey.[【收料通知单】物料ID]

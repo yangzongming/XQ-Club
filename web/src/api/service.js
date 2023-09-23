@@ -44,16 +44,6 @@ function createOutsideService(){
     timeout: 20000,
     paramsSerializer: (params) => qs.stringify(params, { indices: false })
   })
-
-  // 请求拦截
-  service.interceptors.request.use(
-    config => config,
-    error => {
-      // 发送失败
-      console.log(error)
-      return Promise.reject(error)
-    }
-  )
   // 响应拦截
   service.interceptors.response.use(
     async response => {
@@ -69,49 +59,7 @@ function createOutsideService(){
         // 如果没有 code 代表这不是项目后端开发的接口 比如可能是 D2Admin 请求最新版本
         return dataAxios
       } else {
-        // 有 code 代表这是一个后端接口 可以进行进一步的判断
-        switch (code) {
-          case 2000:
-            // [ 示例 ] code === 2000 代表没有错误
-            // TODO 可能结果还需要code和msg进行后续处理，所以去掉.data返回全部结果
-            // return dataAxios.data
-            return dataAxios
-          case 401:
-            if (response.config.url === 'api/login/') {
-              errorCreate(`${getErrorMessage(dataAxios.msg)}`)
-              break
-            }
-            var res = await refreshTken()
-            // 设置请求超时次数
-            var config = response.config
-            util.cookies.set('token', res.data.access)
-            config.headers.Authorization = 'JWT ' + res.data.access
-            config.__retryCount = config.__retryCount || 0
-            if (config.__retryCount >= config.retry) {
-              // 如果重试次数超过3次则跳转登录页面
-              util.cookies.remove('token')
-              util.cookies.remove('uuid')
-              router.push({ path: '/login' })
-              errorCreate('认证已失效,请重新登录~')
-              break
-            }
-            config.__retryCount += 1
-            return service(config)
-          case 404:
-            dataNotFound(`${dataAxios.msg}`)
-            break
-          case 4000:
-            // 删除cookie
-            errorCreate(`${getErrorMessage(dataAxios.msg)}`)
-            break
-          case 400:
-            errorCreate(`${dataAxios.msg}`)
-            break
-          default:
-            // 不是正确的 code
-            errorCreate(`${dataAxios.msg}: ${response.config.url}`)
-            break
-        }
+        return dataAxios
       }
     },
     error => {
