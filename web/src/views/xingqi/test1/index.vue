@@ -40,6 +40,7 @@ export default {
       return crudOptions(this)
     },
     pageRequest (query) {
+      console.log(api.GetList(query))
       return api.GetList(query)
     },
     addRequest (row) {

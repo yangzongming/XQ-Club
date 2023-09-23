@@ -17,7 +17,6 @@ def index(request):
     html = '<h1>星奇测试------ Leo Hello World， I am Django。</h1>'
     return HttpResponse(html, status=200)
 
-@request_verify('get')
 def testJson(request):
     data = {'name': 'John', 'age': 25}
     fid = request.GET.get('fid')
