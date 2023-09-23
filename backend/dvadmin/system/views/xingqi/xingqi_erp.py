@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 import json
 from .check import request_verify
-
+from dvadmin.system.utils.DateEncode import DateEncoder
 
 
 def index(request):
@@ -406,4 +406,4 @@ def response_page_success(message, data=[], total=None, page=None, limit=None):
             'total' : total,
             'data' : data,
         },  # 返回单个对象
-    }, ensure_ascii=False), 'application/json')
+    }, cls=DateEncoder, ensure_ascii=False), 'application/json')
