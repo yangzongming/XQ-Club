@@ -42,7 +42,7 @@ def craw_projectlist():
                           'TDS_Version=8.0')
     cursor = conn.cursor()
     sql = """ SELECT bas_predbtwo.FID,bas_predbtwo.FNUMBER,bas_predbtwo.FCREATEDATE,bas_predbtwo.F_XQZD_TEXT
-     FROM dbo.T_BAS_PREBDTWO as bas_predbtwo ORDER BY bas_predbtwo.PCREATEDATE DESC """
+     FROM dbo.T_BAS_PREBDTWO as bas_predbtwo ORDER BY bas_predbtwo.FCREATEDATE DESC """
     recSet = cursor.execute(sql)
     datalist = recSet.fetchall()
     xls_lines = []
