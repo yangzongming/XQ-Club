@@ -20,14 +20,47 @@ def index(request):
 def testJson(request):
     data = {'name': 'John', 'age': 25}
     fid = request.GET.get('fid')
-    json_data = json.dumps(data)
     dlist = craw_requestion_detail(fid)
-    #d = json.dumps(dlist)
     return response_page_success(message="成功了", data=dlist, total=100, limit= 10, page= 1)
 
 def get_purcharse_track_detail(request):
     dic = craw_purcharse_detail()
     return response_page_success(message="成功了", data=dic["data"], total=dic["total"], limit= dic["limit"], page= dic["page"])
+
+def get_project_list(request):
+    dic = craw_projectlist();
+    return response_page_success(message="成功了", data=dic["data"], total=dic["total"], limit=dic["limit"],
+                                 page=dic["page"])
+
+def craw_projectlist():
+    conn = pyodbc.connect('Driver={SQL Server};'
+                          'Server=172.17.0.239,1433;'
+                          'Database=AIS20230524185151;'
+                          'Uid=sa;'
+                          'PWD=xqerp!@#2023;'
+                          'Trusted_Connection=no;'
+                          'TDS_Version=8.0')
+    cursor = conn.cursor()
+    sql = """ SELECT bas_predbtwo.FID,bas_predbtwo.FNUMBER,bas_predbtwo.FCREATEDATE,bas_predbtwo.F_XQZD_TEXT
+     FROM dbo.T_BAS_PREBDTWO as bas_predbtwo ORDER BY bas_predbtwo.PCREATEDATE DESC """
+    recSet = cursor.execute(sql)
+    datalist = recSet.fetchall()
+    xls_lines = []
+    for line in datalist:
+        xls_lines.append({
+            'FID': line[0],
+            'FNUMBER': line[1],
+            'FCREATEDATE': line[2],
+            'F_XQZD_TEXT': line[3]
+        })
+
+    tmp_lines = xls_lines[: 500]
+    return {
+        "data": tmp_lines,
+        "total": len(tmp_lines),
+        "limit": 50,
+        "page": 1,
+    }
 
 def craw_purcharse_detail():
     conn = pyodbc.connect('Driver={SQL Server};'
