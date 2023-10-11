@@ -38,7 +38,7 @@
 
 <script>
 
-  import onlineConfigApi from '@/api/onlineConfig';
+  //import onlineConfigApi from '@/api/onlineConfig';
   import {parseTime, resetTemp} from '@/utils'
 
   export default {
@@ -99,20 +99,11 @@
         }
       },
       onSubmit() {
-        var json = JSON.stringify(this.config);
-        var map = {"data":json};
-        onlineConfigApi.createOrUpdateOnlineConfig(map).then((res)=>{
-          this.$message.success("保存成功！");
-          this.$emit("dialogClosed",true);
-      });
+
       },
 
       loadConfigDataFromServer(curConfigId){
-        onlineConfigApi.getOnlineConfigDetail(this.curConfigId).then(
-          res=>{
-          this.isInsert=false;
-          this.config = res.data;
-        });
+
       },
       handleClose(){
         this.$emit('dialogClosed',true);
