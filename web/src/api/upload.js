@@ -14,12 +14,8 @@ export default {
     headers: { "Content-Type": "multipart/form-data;boundary="+new Date().getTime() }
   };
   let service = serviceForOutside()
-  service.post("/file/upload",formData,config).then(
-    function (response) {
-      console.log(response);
-    }).catch(function(error) {
-    // 上传失败后的处理
-    console.error('上传失败', error);
+  service.post("/file/upload",formData,config).then((response) =>{
+    console.log('全部响应结果:',response);
   })
   }
 }
