@@ -11,6 +11,9 @@ from django.shortcuts import render
 import json
 from .check import request_verify
 from dvadmin.utils.DateEncode import DateEncoder
+from .util.forms import UploadFileForm
+from somewhere import handle_uploaded_file
+from django.http import HttpResponseRedirect
 
 
 def index(request):
@@ -31,6 +34,16 @@ def get_project_list(request):
     dic = craw_projectlist();
     return response_page_success(message="成功了", data=dic["data"], total=dic["total"], limit=dic["limit"],
                                  page=dic["page"])
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'])
+            return HttpResponseRedirect('/success/url/')
+    else:
+        form = UploadFileForm()
+    return render(request, 'upload.html', {'form': form})
 
 def craw_projectlist():
     conn = pyodbc.connect('Driver={SQL Server};'
