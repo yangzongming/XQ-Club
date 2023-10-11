@@ -54,7 +54,7 @@
   export default{
 
     components:{
-      addConfig,
+      addConfig
     },
 
     data(){
@@ -85,11 +85,7 @@
 
       },
       loadDataFromServer(current){
-        if(current){
-          this.tablePage.current = current;
-        }
-      }
-      );
+
       },
       //分页
       handleSizeChange(val) {
