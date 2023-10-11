@@ -14,8 +14,10 @@ export default {
     formData.append('files', file)
     const token = util.cookies.get('token')
     const config = {
-      Authorization: 'JWT ' + token,
-      headers: { "Content-Type": "multipart/form-data;boundary="+new Date().getTime() }
+      headers: {
+        "Content-Type": "multipart/form-data;boundary="+new Date().getTime(),
+        "Authorization": 'JWT ' + token
+      }
     }
     axios.post(urlPre + "/upload_file", formData, config)
       .then( response =>{
