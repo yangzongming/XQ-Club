@@ -3,7 +3,19 @@
     <div style="margin-bottom: 30px;"></div>
     <el-button type="primary" icon="el-icon-plus" size="mini" @click="createArticle" ></el-button>
     <div style="margin-bottom: 10px;"></div>
+
+    <el-upload
+            ref="upload"
+            action=""
+            :auto-upload="false"
+            :show-file-list="false"
+            accept=".csv"//我这里上传的是csv格式 具体格式看你自己
+            :on-change="(file, fileList) => getFile(file, fileList)">
+          <el-button size="small" type="primary">导入</el-button>
+    </el-upload>
+
     <!--列表-->
+    <!---
     <el-table style="width: 100%"
               :data="configList"
               v-loading.body="tableLoading"
@@ -27,6 +39,7 @@
         </template>
       </el-table-column>
     </el-table>
+    --->
 
     <div style="margin-bottom: 30px;"></div>
     <!--分页-->
@@ -87,6 +100,11 @@
       loadDataFromServer(current){
 
       },
+
+      getFile(file, fileList) {
+
+      },
+
       //分页
       handleSizeChange(val) {
         this.tablePage.count = val;
