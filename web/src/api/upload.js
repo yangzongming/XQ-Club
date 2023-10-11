@@ -12,11 +12,11 @@ export default {
   uploadFile (file) {
     let formData = new FormData()
     formData.append('files', file)
+    const token = util.cookies.get('token')
     const config = {
       Authorization: 'JWT ' + token,
       headers: { "Content-Type": "multipart/form-data;boundary="+new Date().getTime() }
     }
-    const token = util.cookies.get('token')
     axios.post(urlPre + "/upload_file", formData, config)
       .then( response =>{
         console.log('全部响应结果:', response);
