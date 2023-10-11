@@ -16,7 +16,7 @@ export default {
   let service = serviceForOutside()
     console.log("fuck")
     console.log(typeof service)
-    service.post("/file/upload",formData,config).then((response) =>{
+    service.post(urlPre + "/file/upload",formData,config).then((response) =>{
      console.log('全部响应结果:',response);
     })
   }
