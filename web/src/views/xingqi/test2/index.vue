@@ -47,7 +47,7 @@
 
 
 <script>
-  import onlineConfigApi from '@/api/onlineConfig'
+  //import onlineConfigApi from '@/api/onlineConfig'
   import addConfig from './add_config'
   import {root,confirm,pageParamNames} from '@/utils/constants'
   import {parseTime, resetTemp} from '@/utils'
@@ -88,19 +88,6 @@
         if(current){
           this.tablePage.current = current;
         }
-        this.tableLoading = true
-        var offset = this.tablePage.current == 0 ? 0 : (this.tablePage.current-1)*this.tablePage.count;
-        var count = this.tablePage.count;
-        onlineConfigApi.getOnlineConfigList(offset,count).then(
-          res=>{
-          this.configList = res.data.items;
-          console.log(this.configList)
-          this.tableLoading = false;
-          this.tablePage.total = res.data['total'];
-        if(res.data['count'] > 0){
-          this.tablePage.current = res.data['offset']/res.data['count']+1;
-        }
-        this.tablePage.count = res.data['count'];
       }
       );
       },
