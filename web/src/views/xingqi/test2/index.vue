@@ -103,8 +103,8 @@
 
       uploadFile(file, fileList) {
         upload.uploadFile(file).then(res={
-          console.log("OK")
-        })
+          console.log("OK");
+        });
       },
 
       //分页
