@@ -9,7 +9,7 @@
             action=""
             :auto-upload="false"
             :show-file-list="false"
-            accept=".csv"//我这里上传的是csv格式 具体格式看你自己
+            accept="123.csv"
             :on-change="(file, fileList) => getFile(file, fileList)">
           <el-button size="small" type="primary">导入</el-button>
     </el-upload>
