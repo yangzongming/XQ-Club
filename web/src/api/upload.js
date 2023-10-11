@@ -16,5 +16,8 @@ export function uploadFile (file) {
   service.post("/file/upload",formData,config).then(
     function (response) {
       console.log(response);
-    }
+    }).catch(function(error) {
+    // 上传失败后的处理
+    console.error('上传失败', error);
+  })
 }
