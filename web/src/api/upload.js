@@ -14,8 +14,10 @@ export default {
     headers: { "Content-Type": "multipart/form-data;boundary="+new Date().getTime() }
   };
   let service = serviceForOutside()
-  service.post("/file/upload",formData,config).then((response) =>{
-    console.log('全部响应结果:',response);
-  })
+    console.log("fuck")
+    console.log(typeof service)
+    service.post("/file/upload",formData,config).then((response) =>{
+     console.log('全部响应结果:',response);
+    })
   }
 }
