@@ -11,9 +11,8 @@ from django.shortcuts import render
 import json
 from .check import request_verify
 from dvadmin.utils.DateEncode import DateEncoder
-from .util.forms import UploadFileForm
-from somewhere import handle_uploaded_file
-from django.http import HttpResponseRedirect
+from django.conf import settings
+
 
 
 def index(request):
@@ -37,13 +36,16 @@ def get_project_list(request):
 
 def upload_file(request):
     if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            handle_uploaded_file(request.FILES['file'])
-            return HttpResponseRedirect('/success/url/')
+        file = request.FILES['file']
+        # 文件在服务端路径 获取配置
+        filePath = os.path.join(settings.MEDIA_ROOT, file.name)
+        # 保存文件
+        with open(filePath, 'wb+') as fp:
+            for info in file.chunks():
+                fp.write(info)
+        return HttpResponse('上传成功！')
     else:
-        form = UploadFileForm()
-    return render(request, 'upload.html', {'form': form})
+        return HttpResponse('请选择POST提交文件！')
 
 def craw_projectlist():
     conn = pyodbc.connect('Driver={SQL Server};'
