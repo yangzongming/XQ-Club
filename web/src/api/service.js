@@ -275,7 +275,7 @@ function createRequestFunction (service) {
 
 function createRequestFunctionSELF (service) {
   const token = util.cookies.get('token')
-  let config = {}
+  const config = {}
   // 进行布尔值兼容
   var params = get(config, 'params', {})
   for (const key of Object.keys(params)) {
