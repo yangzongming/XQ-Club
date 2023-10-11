@@ -6,7 +6,8 @@ import { serviceForOutside } from '@/api/service'
 
 const urlPre = 'http://172.17.1.249:9602/api/system/xingqi'
 
-export function uploadFile (file) {
+export default {
+  uploadFile (file) {
   let formData = new FormData()
   formData.append('files', file)
   const config = {
@@ -20,4 +21,5 @@ export function uploadFile (file) {
     // 上传失败后的处理
     console.error('上传失败', error);
   })
+  }
 }
