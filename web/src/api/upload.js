@@ -16,7 +16,7 @@ export default {
     }
     //let service = serviceForOutside()
     console.log("fuck")
-    console.log(Object.prototype.toString.call(service))
+    //console.log(Object.prototype.toString.call(service))
     axios.post(urlPre + "/file/upload", formData, config)
       .then( response =>{
         console.log('全部响应结果:', response);
