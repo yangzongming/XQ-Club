@@ -103,7 +103,7 @@
 
       uploadFile(file, fileList) {
         upload.uploadFile(file).then(res={
-          console.log("OK");
+
         });
       },
 
