@@ -14,10 +14,8 @@ export default {
     const config = {
       headers: { "Content-Type": "multipart/form-data;boundary="+new Date().getTime() }
     }
-    let service = requestForOutside_SELF()
-    console.log("fuck")
     //console.log(Object.prototype.toString.call(service))
-    service.post(urlPre + "/upload_file", formData, config)
+    axios.post(urlPre + "/upload_file", formData, config)
       .then( response =>{
         console.log('全部响应结果:', response);
       })
