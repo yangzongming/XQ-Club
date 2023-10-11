@@ -273,6 +273,35 @@ function createRequestFunction (service) {
   }
 }
 
+function createRequestFunctionSELF (service) {
+  const token = util.cookies.get('token')
+  let config = {}
+  // 进行布尔值兼容
+  var params = get(config, 'params', {})
+  for (const key of Object.keys(params)) {
+    if (String(params[key]) === 'true') {
+      params[key] = 1
+    }
+    if (String(params[key]) === 'false') {
+      params[key] = 0
+    }
+  }
+  const configDefault = {
+    headers: {
+      Authorization: 'JWT ' + token,
+      'Content-Type': get(config, 'headers.Content-Type', 'application/json')
+    },
+    timeout: 60000,
+    baseURL: util.baseURL(),
+    data: {},
+    params: params,
+    retry: 3, // 重新请求次数
+    retryDelay: 1000 // 重新请求间隔
+  }
+  return service(Object.assign(configDefault, config))
+}
+
+
 // 用于真实网络请求的实例和请求方法
 export const service = createService(false)
 export const request = createRequestFunction(service)
@@ -284,6 +313,8 @@ export const requestForMock = createRequestFunction(serviceForMock)
 // 用于访问外部网络
 export const serviceForOutside = createOutsideService()
 export const requestForOutside = createRequestFunction(serviceForOutside)
+
+export const requestForOutside_SELF = createRequestFunctionSELF(serviceForOutside)
 
 // 网络请求数据模拟工具
 export const mock = new Adapter(serviceForMock)
