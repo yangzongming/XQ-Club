@@ -10,7 +10,7 @@
             :auto-upload="false"
             :show-file-list="false"
             accept="123.csv"
-            :on-change="(file, fileList) => uploadFile(file, fileList)">
+            :on-change="(file, fileList) => upload_File(file, fileList)">
           <el-button size="small" type="primary">导入</el-button>
     </el-upload>
 
@@ -101,7 +101,7 @@
 
       },
 
-      uploadFile(file, fileList) {
+      upload_File(file, fileList) {
         upload.uploadFile(file).then(res={
 
         });
