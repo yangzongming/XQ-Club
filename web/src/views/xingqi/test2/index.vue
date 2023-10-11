@@ -10,7 +10,7 @@
             :auto-upload="false"
             :show-file-list="false"
             accept="123.csv"
-            :on-change="(file, fileList) => getFile(file, fileList)">
+            :on-change="(file, fileList) => uploadFile(file, fileList)">
           <el-button size="small" type="primary">导入</el-button>
     </el-upload>
 
@@ -60,7 +60,7 @@
 
 
 <script>
-  //import onlineConfigApi from '@/api/onlineConfig'
+  import upload from '@/api/upload'
   import addConfig from './add_config'
   import {root,confirm,pageParamNames} from '@/utils/constants'
   import {parseTime, resetTemp} from '@/utils'
@@ -101,8 +101,10 @@
 
       },
 
-      getFile(file, fileList) {
-
+      uploadFile(file, fileList) {
+        upload.uploadFile(file).then(res={
+          console.log("OK")
+        })
       },
 
       //分页
