@@ -1,8 +1,8 @@
 /**
  * “上传文件”相关接口
  */
-import { request } from '@/api/service'
-import { requestForOutside_SELF } from '@/api/service'
+import {request, requestForOutside} from '@/api/service'
+import { requestForOutsideSELF } from '@/api/service'
 import axios from 'axios'
 import util from '@/libs/util'
 
@@ -19,7 +19,8 @@ export default {
         "Authorization": 'JWT ' + token
       }
     }
-    axios.post(urlPre + "/upload_file", formData, config)
+    const service = requestForOutside(config)
+    service.post(urlPre + "/upload_file", formData, config)
       .then( response =>{
         console.log('全部响应结果:', response);
       })

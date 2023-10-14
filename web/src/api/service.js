@@ -313,6 +313,7 @@ export const requestForMock = createRequestFunction(serviceForMock)
 // 用于访问外部网络
 export const serviceForOutside = createOutsideService()
 export const requestForOutside = createRequestFunction(serviceForOutside)
+export const requestForOutsideSELF = createRequestFunctionSELF(serviceForOutside)
 
 // 网络请求数据模拟工具
 export const mock = new Adapter(serviceForMock)
