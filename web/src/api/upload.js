@@ -20,6 +20,8 @@ export default {
       }
     }
     const service = requestForOutside(config)
+    let type = Object.prototype.toString.call(service);
+    console(type)
     service.post(urlPre + "/upload_file", formData, config)
       .then( response =>{
         console.log('全部响应结果:', response);
