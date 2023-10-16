@@ -273,35 +273,6 @@ function createRequestFunction (service) {
   }
 }
 
-function createRequestFunctionSELF (service) {
-  const token = util.cookies.get('token')
-  const config = {}
-  // 进行布尔值兼容
-  var params = get(config, 'params', {})
-  for (const key of Object.keys(params)) {
-    if (String(params[key]) === 'true') {
-      params[key] = 1
-    }
-    if (String(params[key]) === 'false') {
-      params[key] = 0
-    }
-  }
-  const configDefault = {
-    headers: {
-      Authorization: 'JWT ' + token,
-      'Content-Type': get(config, 'headers.Content-Type', 'application/json')
-    },
-    timeout: 60000,
-    baseURL: util.baseURL(),
-    data: {},
-    params: params,
-    retry: 3, // 重新请求次数
-    retryDelay: 1000 // 重新请求间隔
-  }
-  return service(Object.assign(configDefault, config))
-}
-
-
 // 用于真实网络请求的实例和请求方法
 export const service = createService(false)
 export const request = createRequestFunction(service)
@@ -313,7 +284,6 @@ export const requestForMock = createRequestFunction(serviceForMock)
 // 用于访问外部网络
 export const serviceForOutside = createOutsideService()
 export const requestForOutside = createRequestFunction(serviceForOutside)
-export const requestForOutsideSELF = createRequestFunctionSELF(serviceForOutside)
 
 // 网络请求数据模拟工具
 export const mock = new Adapter(serviceForMock)
@@ -374,15 +344,15 @@ export const uploadFile = function ({
   url,
   params,
   method,
-  filename = '文件上传'
+  filename = '文件上传',
+  data
 }) {
-  const token = util.cookies.get('token')
   request({
     url: url,
     method: method,
     params: params,
     responseType: 'blob',
-    headers: {Authorization: 'JWT ' + token}
+    data: data,
   }).then(res => {
     const xlsxName = window.decodeURI(res.headers['content-disposition'].split('=')[1])
     const fileName = xlsxName || `${filename}.xlsx`
