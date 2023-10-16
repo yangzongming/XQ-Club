@@ -12,7 +12,7 @@ import json
 from .check import request_verify
 from dvadmin.utils.DateEncode import DateEncoder
 from django.conf import settings
-
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
@@ -34,6 +34,7 @@ def get_project_list(request):
     return response_page_success(message="成功了", data=dic["data"], total=dic["total"], limit=dic["limit"],
                                  page=dic["page"])
 
+@csrf_except
 def upload_file(request):
     print("FUCK")
     if request.method == 'POST':
