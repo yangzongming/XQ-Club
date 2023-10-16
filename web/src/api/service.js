@@ -351,22 +351,9 @@ export const uploadFile = function ({
     url: url,
     method: method,
     params: params,
-    responseType: 'blob',
     data: data,
     headers: {'Content-Type': 'multipart/form-data'}
   }).then(res => {
-    const xlsxName = window.decodeURI(res.headers['content-disposition'].split('=')[1])
-    const fileName = xlsxName || `${filename}.xlsx`
-    if (res) {
-      const blob = new Blob([res.data], { type: 'charset=utf-8' })
-      const elink = document.createElement('a')
-      elink.download = fileName
-      elink.style.display = 'none'
-      elink.href = URL.createObjectURL(blob)
-      document.body.appendChild(elink)
-      elink.click()
-      URL.revokeObjectURL(elink.href) // 释放URL 对象0
-      document.body.removeChild(elink)
-    }
+
   })
 }
