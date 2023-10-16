@@ -9,8 +9,8 @@
             action=""
             :auto-upload="false"
             :show-file-list="false"
-            accept="123.csv"
-            :on-change="(file, fileList) => upload_File(file, fileList)">
+            accept="汇报.xlsx"
+            :on-change="(file) => upload_File(file)">
           <el-button size="small" type="primary">导入</el-button>
     </el-upload>
 
