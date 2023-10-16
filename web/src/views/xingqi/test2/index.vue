@@ -101,7 +101,7 @@
 
       },
 
-      upload_File(file, fileList) {
+      upload_File(file) {
         upload.uploadFile(file).then(res={
 
         });
