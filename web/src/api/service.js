@@ -353,6 +353,7 @@ export const uploadFile = function ({
     params: params,
     responseType: 'blob',
     data: data,
+    headers: {'Content-Type': 'multipart/form-data'}
   }).then(res => {
     const xlsxName = window.decodeURI(res.headers['content-disposition'].split('=')[1])
     const fileName = xlsxName || `${filename}.xlsx`
