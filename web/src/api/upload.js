@@ -18,10 +18,6 @@ export default {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(response => {
-        console.log(response.data);
-      }).catch(error => {
-        console.error(error);
-      });
+      })
   }
 }
