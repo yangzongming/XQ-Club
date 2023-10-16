@@ -16,7 +16,7 @@ export default {
     formData.append('file', file)
     axios.post(urlPre + "/upload_file", formData, {
         headers: {
-          'Content-Type': 'multipart-formData',
+          'Content-Type': 'multipart/form-data;charset=UTF-8'
         }
       })
   }
