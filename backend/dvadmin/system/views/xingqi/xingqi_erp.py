@@ -37,13 +37,10 @@ def get_project_list(request):
 @csrf_exempt
 def upload_file(request):
     if request.method == 'POST':
-        files = request.FILES.getlist("file")
-        print(files)
+        file = request.FILES.get("file")
+        print(file)
         # 文件在服务端路径 获取配置
-        if len(files) > 0:
-            filePath = os.path.join(settings.MEDIA_ROOT, file.name)
-        else:
-            filePath = ""
+        filePath = os.path.join(settings.MEDIA_ROOT, file.name)
         # 保存文件
         with open(filePath, 'wb+') as fp:
             for info in file.chunks():

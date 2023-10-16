@@ -12,7 +12,7 @@ const urlPre = 'http://172.17.1.249:9602/api/system/xingqi'
 export default {
   uploadFile (file){
     let formData = new FormData()
-    formData.append('file', file)
+    formData.append('file', file.target.files[0])
     return uploadFile({
       url: urlPre + '/upload_file',
       method: 'post',
