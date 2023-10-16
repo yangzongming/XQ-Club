@@ -342,15 +342,12 @@ export const downloadFile = function ({
 
 export const uploadFile = function ({
   url,
-  params,
   method,
-  filename = '文件上传',
   data
 }) {
   request({
     url: url,
     method: method,
-    params: params,
     data: data,
     headers: {'Content-Type': 'multipart/form-data'}
   }).then(res => {
