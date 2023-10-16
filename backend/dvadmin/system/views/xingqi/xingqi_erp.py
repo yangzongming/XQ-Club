@@ -38,9 +38,13 @@ def get_project_list(request):
 def upload_file(request):
     print("FUCK")
     if request.method == 'POST':
-        file = request.FILES.getlist("file")[0]
+        files = request.FILES.getlist("file")
+        print(files)
         # 文件在服务端路径 获取配置
-        filePath = os.path.join(settings.MEDIA_ROOT, file.name)
+        if len(files) > 0:
+            filePath = os.path.join(settings.MEDIA_ROOT, file.name)
+        else:
+            filePath = ""
         # 保存文件
         with open(filePath, 'wb+') as fp:
             for info in file.chunks():
