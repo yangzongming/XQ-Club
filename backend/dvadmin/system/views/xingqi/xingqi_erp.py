@@ -38,15 +38,13 @@ def get_project_list(request):
 def upload_file(request):
     if request.method == 'POST':
         file = request.FILES.get("file")
-        print(file)
-        print(request.FILES)
-        # 文件在服务端路径 获取配置
-        filePath = os.path.join(settings.MEDIA_ROOT, file.name)
-        # 保存文件
-        with open(filePath, 'wb+') as fp:
-            for info in file.chunks():
-                fp.write(info)
-        return HttpResponse('上传成功！')
+        if file:
+            print(file)
+            print(request.FILES)
+            # 文件在服务端路径 获取配置
+            return HttpResponse('上传成功！')
+        else:
+            return HttpResponse('失败了，文件错误')
     else:
         return HttpResponse('请选择POST提交文件！')
 
