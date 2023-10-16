@@ -14,7 +14,7 @@ export default {
     let formData = new FormData()
     formData.append('files', file)
     return downloadFile({
-      url: urlPre + 'upload_file/',
+      url: urlPre + '/upload_file/',
       method: 'post',
       data: formData
   })}
