@@ -10,13 +10,18 @@ import {urlPrefix} from "@/views/system/user/api";
 const urlPre = 'http://172.17.1.249:9602/api/system/xingqi'
 
 export default {
-  uploadFile (file){
+  uploadFile (file) {
     let formData = new FormData()
     console.log(file)
     formData.append('file', file)
-    return uploadFile({
-      url: urlPre + '/upload_file',
-      method: 'post',
-      data: formData
-  })}
+    axios.post(urlPre + "upload_file", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(response => {
+        console.log(response.data);
+      }).catch(error => {
+        console.error(error);
+      });
+  }
 }
