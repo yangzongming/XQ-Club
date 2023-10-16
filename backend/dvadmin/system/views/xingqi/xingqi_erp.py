@@ -35,6 +35,9 @@ def get_project_list(request):
                                  page=dic["page"])
 
 def upload_file(request):
+
+    print("FUCK")
+
     if request.method == 'POST':
         file = request.FILES['file']
         # 文件在服务端路径 获取配置
