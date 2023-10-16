@@ -376,12 +376,13 @@ export const uploadFile = function ({
   method,
   filename = '文件上传'
 }) {
+  const token = util.cookies.get('token')
   request({
     url: url,
     method: method,
     params: params,
-    responseType: 'blob'
-    // headers: {Accept: 'application/vnd.openxmlformats-officedocument'}
+    responseType: 'blob',
+    headers: {Authorization: 'JWT ' + token}
   }).then(res => {
     const xlsxName = window.decodeURI(res.headers['content-disposition'].split('=')[1])
     const fileName = xlsxName || `${filename}.xlsx`
