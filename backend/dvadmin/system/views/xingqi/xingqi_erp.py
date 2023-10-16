@@ -36,7 +36,6 @@ def get_project_list(request):
 
 @csrf_exempt
 def upload_file(request):
-    print("FUCK")
     if request.method == 'POST':
         files = request.FILES.getlist("file")
         print(files)
