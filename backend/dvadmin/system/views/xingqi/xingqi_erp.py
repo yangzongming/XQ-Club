@@ -34,7 +34,7 @@ def get_project_list(request):
     return response_page_success(message="成功了", data=dic["data"], total=dic["total"], limit=dic["limit"],
                                  page=dic["page"])
 
-@csrf_excmpt
+@csrf_exempt
 def upload_file(request):
     print("FUCK")
     if request.method == 'POST':
