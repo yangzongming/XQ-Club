@@ -6,11 +6,10 @@
 
     <el-upload
             ref="upload"
-            action=""
+            action="http://172.17.1.249:9602/api/system/xingqi/upload_file"
             :auto-upload="false"
             :show-file-list="false"
-            accept="汇报.xlsx"
-            :on-change="(file) => upload_File(file)">
+            accept="file.xlsx"
           <el-button size="small" type="primary">导入</el-button>
     </el-upload>
 
