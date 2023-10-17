@@ -5,9 +5,8 @@
             ref="upload"
             action=""
             accept=".xlsx,.xls"
-            on-change="upload_File"
-          <el-button size="small" type="primary">导入</el-button>
-          >
+            on-change="upload_File">
+            <el-button size="small" type="primary">导入</el-button>
     </el-upload>
     <!--列表-->
     <div style="margin-bottom: 30px;"></div>
