@@ -54,12 +54,16 @@ def handleQuoteFile(filename):
         })
 
     for material in material_list:
-        print(material["name"])
+        #print(material["name"])
         number = material["number"]
+
         rec = cursor.execute(sql_detail, number)
         datalist = rec.fetchall()
-        for line in datalist:
-            xls_lines.append([line.FPKID,line.FMATERIALID,line.FNAME,line.FNUMBER,line.FMAXPRICE,line.FMINPRICE,line.sFNAME])
+        if len(datalist) > 0:
+            for line in datalist:
+                xls_lines.append([line.FPKID,line.FMATERIALID,line.FNAME,number,line.FNUMBER,line.FMAXPRICE,line.FMINPRICE,line.sFNAME])
+        else:
+            xls_lines.append(["","",material["name"],number,"","","","",""])
 
     wb = openpyxl.Workbook()
     ws = wb.active
