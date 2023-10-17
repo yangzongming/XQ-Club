@@ -7,7 +7,7 @@
     <el-upload
             ref="upload"
             action=""
-            :on-change="upload_File"
+            :on-change="(file, fileList) => {upload_File(file, fileList);} "
           <el-button size="small" type="primary">导入</el-button>
     </el-upload>
     <!--列表-->
