@@ -46,7 +46,6 @@ def upload_file(request):
                     fp.write(info)
                     #print(info)
             # 文件在服务端路径 获取配置
-
             # 保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
             handleQuoteFile(filePath)
 

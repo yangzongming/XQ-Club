@@ -9,7 +9,7 @@ import openpyxl
 
 
 def handleQuoteFile(filename):
-    print("开始处理excel文件")
+    print("开始处理excel文件"+filename)
     file_name = filename
     refer_excel = openpyxl.load_workbook(file_name)
     #获取第一个sheet表格
