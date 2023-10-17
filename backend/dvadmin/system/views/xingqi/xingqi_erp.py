@@ -13,6 +13,7 @@ from .check import request_verify
 from dvadmin.utils.DateEncode import DateEncoder
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from .util.QuoteUtil import handleQuoteFile
 
 
 def index(request):
@@ -43,7 +44,12 @@ def upload_file(request):
             with open(filePath, 'wb+') as fp:
                 for info in file.chunks():
                     fp.write(info)
+                    print(info)
             # 文件在服务端路径 获取配置
+
+            # 保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
+            handleQuoteFile(info)
+
             return HttpResponse('上传成功！')
         else:
             return HttpResponse('失败了，文件错误')
