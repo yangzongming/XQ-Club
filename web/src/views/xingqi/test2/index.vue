@@ -6,7 +6,8 @@
 
     <el-upload
             ref="upload"
-            action="http://172.17.1.249:9602/api/system/xingqi/upload_file"
+            action=""
+            :http-request="upload_File"
           <el-button size="small" type="primary">导入</el-button>
     </el-upload>
     <!--列表-->
@@ -59,6 +60,8 @@
   import addConfig from './add_config'
   import {root,confirm,pageParamNames} from '@/utils/constants'
   import {parseTime, resetTemp} from '@/utils'
+  import axios from 'axios'
+
   export default{
 
     components:{
@@ -97,9 +100,13 @@
       },
 
       upload_File(file) {
-        upload.uploadFile(file).then(res={
-
-        });
+        let formData = new FormData()
+        formData.append('file', file)
+        axios.post("http://172.17.1.249:9602/api/system/xingqi" + "/upload_file", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data;charset=UTF-8'
+          }
+        })
       },
 
       //分页
