@@ -7,12 +7,8 @@
     <el-upload
             ref="upload"
             action="http://172.17.1.249:9602/api/system/xingqi/upload_file"
-            :auto-upload="false"
-            :show-file-list="false"
-            accept="file.xlsx"
           <el-button size="small" type="primary">导入</el-button>
     </el-upload>
-
     <!--列表-->
     <!---
     <el-table style="width: 100%"
