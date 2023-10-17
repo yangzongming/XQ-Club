@@ -13,7 +13,7 @@
   export default{
     methods:{
       upload_File(file, filelist) {
-         upload.uploadFile(file.raw)
+        upload.uploadFile(file.raw)
       }
     }
   }
