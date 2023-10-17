@@ -23,7 +23,8 @@ def handleQuoteFile(filename):
 
     sql_detail = '''
     
-    SELECT TOP 1 material_l.*,  material.FNUMBER, materialpurchase.FMINPRICE,  materialpurchase.FMAXPRICE  FROM dbo.T_BD_MATERIAL_L AS material_l 
+    SELECT TOP 1 material_l.*,  material.FNUMBER, materialpurchase.FMINPRICE,  materialpurchase.FMAXPRICE, supplier_l.FNAME
+      FROM dbo.T_BD_MATERIAL_L AS material_l 
     INNER JOIN dbo.T_BD_MATERIALPURCHASE AS materialpurchase ON materialpurchase.FMATERIALID = material_l.FMATERIALID
     INNER JOIN dbo.T_BD_MATERIAL AS material ON material.FMATERIALID = material_l.FMATERIALID
 
