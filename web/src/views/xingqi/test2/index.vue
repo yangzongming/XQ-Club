@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
     <div style="margin-bottom: 30px;"></div>
+    上传Excel文件后，报价会发送到邮箱
     <el-upload
       :on-change="upload_File"
     >

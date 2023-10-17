@@ -6,6 +6,7 @@ import time, os, tarfile
 import openpyxl
 import pyodbc
 
+from .MailUtil import send_email
 """
 
 """
@@ -71,10 +72,10 @@ def handleQuoteFile(filename):
     ws = wb.active
     for line in xls_lines:
         ws.append(line)
-    wb.save("/opt/excel/out_price.xlsx")
-
     cursor.close()
     conn.close()
+    wb.save("/opt/excel/out_price.xlsx")
+    send_email("supplier", "/opt/excel/out_price.xlsx")
 
 
 
