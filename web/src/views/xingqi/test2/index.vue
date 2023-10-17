@@ -99,9 +99,9 @@
 
       },
 
-      upload_File(file) {
+      upload_File(file, filelist) {
         let formData = new FormData()
-        formData.append('file', file)
+        formData.append('file', file.raw)
         axios.post("http://172.17.1.249:9602/api/system/xingqi" + "/upload_file", formData, {
         headers: {
           'Content-Type': 'multipart/form-data;charset=UTF-8'
