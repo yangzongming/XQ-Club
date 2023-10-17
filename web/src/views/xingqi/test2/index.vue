@@ -7,6 +7,7 @@
             accept=".xlsx,.xls"
             :on-change="upload_File"
           <el-button size="small" type="primary">导入</el-button>
+          >
     </el-upload>
     <!--列表-->
     <div style="margin-bottom: 30px;"></div>
@@ -17,9 +18,6 @@
 <script>
   import upload from '@/api/upload'
   export default{
-    created() {
-
-    },
     methods:{
       upload_File(file, filelist) {
          upload.uploadFile(file.raw)
