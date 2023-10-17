@@ -5,8 +5,5 @@
     <div style="margin-bottom: 30px;"></div>
   </div>
 </template>
-
-
 <script>
-
 </script>
