@@ -17,23 +17,13 @@
 <script>
   import upload from '@/api/upload'
   export default{
-
-    components:{
-
-    },
-
-    data(){
-      return{
-
-      }
-    },
     created() {
 
     },
     methods:{
       upload_File(file, filelist) {
          upload.uploadFile(file.raw)
-      },
+      }
     }
   }
 </script>
