@@ -38,6 +38,10 @@ def handleQuoteFile(filename):
     '''
 
     print("开始处理excel文件"+filename)
+    xheaders = u'FPKID,FMATARIALID,物料名称,规格型号,料号,最高价格,最低价格,供应商,购买次数'.split(',')
+    xls_lines = [xheaders]
+
+
     file_name = filename
     refer_excel = openpyxl.load_workbook(file_name)
     #获取第一个sheet表格
@@ -55,6 +59,16 @@ def handleQuoteFile(filename):
         rec = cursor.execute(sql_detail, number)
         datalist = rec.fetchall()
         for line in datalist:
-            print(line)
+            xls_lines.append(line["FPKID"],line["FMATERIALID"],line["FNAME"],line["FNUMBER"],line["FMAXPRICE"],line["FMINPRICE"],line["FNAME"])
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    for line in xls_lines:
+        ws.append(line)
+    wb.save("/opt/excel/out_price.xlsx")
+
+    cursor.close()
+    conn.close()
+
 
 
