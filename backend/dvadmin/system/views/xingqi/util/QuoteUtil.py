@@ -23,7 +23,7 @@ def handleQuoteFile(filename):
 
     sql_detail = '''
     
-    SELECT TOP 1 material_l.*,  material.FNUMBER, materialpurchase.FMINPRICE,  materialpurchase.FMAXPRICE, supplier_l.FNAME AS sFNAME
+    SELECT TOP 100 material_l.*,  material.FNUMBER, materialpurchase.FMINPRICE,  materialpurchase.FMAXPRICE, supplier_l.FNAME AS sFNAME
       FROM dbo.T_BD_MATERIAL_L AS material_l 
     INNER JOIN dbo.T_BD_MATERIALPURCHASE AS materialpurchase ON materialpurchase.FMATERIALID = material_l.FMATERIALID
     INNER JOIN dbo.T_BD_MATERIAL AS material ON material.FMATERIALID = material_l.FMATERIALID
@@ -60,8 +60,10 @@ def handleQuoteFile(filename):
         rec = cursor.execute(sql_detail, number)
         datalist = rec.fetchall()
         if len(datalist) > 0:
-            for line in datalist:
-                xls_lines.append([line.FPKID,line.FMATERIALID,line.FNAME,number,line.FNUMBER,line.FMAXPRICE,line.FMINPRICE,line.sFNAME])
+            line = datalist[0]
+            xls_lines.append(
+                [line.FPKID, line.FMATERIALID, line.FNAME, number, line.FNUMBER, line.FMAXPRICE, line.FMINPRICE,
+                 line.sFNAME],len(datalist))
         else:
             xls_lines.append(["","",material["name"],number,"","","","",""])
 
