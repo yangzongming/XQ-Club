@@ -59,7 +59,7 @@ def handleQuoteFile(filename):
         rec = cursor.execute(sql_detail, number)
         datalist = rec.fetchall()
         for line in datalist:
-            xls_lines.append(line["FPKID"],line["FMATERIALID"],line["FNAME"],line["FNUMBER"],line["FMAXPRICE"],line["FMINPRICE"],line["FNAME"])
+            xls_lines.append(str(line["FPKID"]),str(line["FMATERIALID"]),str(line["FNAME"]),str(line["FNUMBER"]),str(line["FMAXPRICE"]),str(line["FMINPRICE"]),str(line["FNAME"]))
 
     wb = openpyxl.Workbook()
     ws = wb.active
