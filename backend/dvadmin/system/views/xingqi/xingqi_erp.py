@@ -39,8 +39,10 @@ def upload_file(request):
     if request.method == 'POST':
         file = request.FILES.get("file")
         if file:
-            print(file)
-            print(request.FILES)
+            filePath = os.path.join(settings.EXCEL_ROOT, file.name)
+            with open(filePath, 'wb+') as fp:
+                for info in file.chunks():
+                    fp.write(info)
             # 文件在服务端路径 获取配置
             return HttpResponse('上传成功！')
         else:
