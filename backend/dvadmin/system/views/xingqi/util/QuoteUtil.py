@@ -63,7 +63,7 @@ def handleQuoteFile(filename):
             line = datalist[0]
             xls_lines.append(
                 [line.FPKID, line.FMATERIALID, line.FNAME, number, line.FNUMBER, line.FMAXPRICE, line.FMINPRICE,
-                 line.sFNAME],len(datalist))
+                 line.sFNAME, len(datalist)])
         else:
             xls_lines.append(["","",material["name"],number,"","","","",""])
 
