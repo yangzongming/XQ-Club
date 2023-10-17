@@ -12,7 +12,6 @@ def handleQuoteFile(filename):
     print("开始处理excel文件")
     file_name = filename
     refer_excel = openpyxl.load_workbook(file_name)
-
     #获取第一个sheet表格
     sheet1 = refer_excel['sheet']
     brand_model_dict = {}

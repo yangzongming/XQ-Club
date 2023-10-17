@@ -44,11 +44,11 @@ def upload_file(request):
             with open(filePath, 'wb+') as fp:
                 for info in file.chunks():
                     fp.write(info)
-                    print(info)
+                    #print(info)
             # 文件在服务端路径 获取配置
 
             # 保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
-            handleQuoteFile(info)
+            handleQuoteFile(filePath)
 
             return HttpResponse('上传成功！')
         else:
