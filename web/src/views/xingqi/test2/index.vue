@@ -16,20 +16,15 @@
 
 <script>
   import upload from '@/api/upload'
-  import addConfig from './add_config'
-  import {root,confirm,pageParamNames} from '@/utils/constants'
-  import {parseTime, resetTemp} from '@/utils'
-
   export default{
 
     components:{
-      addConfig
+
     },
 
     data(){
       return{
-        tableLoading: false,
-        parseTime: parseTime,
+
       }
     },
     created() {
