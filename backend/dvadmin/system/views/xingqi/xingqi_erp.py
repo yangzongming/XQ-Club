@@ -22,10 +22,6 @@ def index(request):
     return HttpResponse(html, status=200)
 
 def testJson(request):
-    data = {'name': 'John', 'age': 25}
-    fid = request.GET.get('fid')
-    dlist = craw_requestion_detail(fid)
-
     #测试User 插入
     uid = next_id()
     user = User(id=uid, nickname=u"xingqi")
