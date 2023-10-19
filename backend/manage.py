@@ -9,6 +9,12 @@ def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'application.settings')
     try:
         from django.core.management import execute_from_command_line
+
+        from ..dvadmin.system.views.xingqi.fastorm import orm
+        import asyncio
+        loop = asyncio.get_event_loop()
+        yield from orm.create_pool(loop=loop)
+
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
