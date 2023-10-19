@@ -15,6 +15,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .util.QuoteUtil import handleQuoteFile
 
+from .models.User import User, next_id
 
 def index(request):
     html = '<h1>星奇测试------ Leo Hello World， I am Django。</h1>'
@@ -24,6 +25,12 @@ def testJson(request):
     data = {'name': 'John', 'age': 25}
     fid = request.GET.get('fid')
     dlist = craw_requestion_detail(fid)
+
+    #测试User 插入
+    uid = next_id()
+    user = User(id=uid, nickname=u"xingqi")
+    yield from user.save()
+
     return response_page_success(message="成功了", data=dlist, total=100, limit= 10, page= 1)
 
 def get_purcharse_track_detail(request):
