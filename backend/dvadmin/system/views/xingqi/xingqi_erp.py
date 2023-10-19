@@ -27,7 +27,7 @@ def testJson(request):
     user = User(id=uid, nickname=u"xingqi")
     user.save()
 
-    return response_page_success(message="成功了", data=dlist, total=100, limit= 10, page= 1)
+    return response_page_success(message="成功了", data=uid, total=100, limit= 10, page= 1)
 
 def get_purcharse_track_detail(request):
     dic = craw_purcharse_detail()
