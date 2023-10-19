@@ -14,10 +14,11 @@ from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'application.settings')
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
-
+from ..dvadmin.system.views.xingqi.fastorm.orm_start import start
 
 http_application = get_asgi_application()
 from application.routing import websocket_urlpatterns
+start()
 application = ProtocolTypeRouter({
     "http":http_application,
     'websocket': AuthMiddlewareStack(
