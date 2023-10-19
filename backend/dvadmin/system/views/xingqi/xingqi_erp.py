@@ -29,7 +29,7 @@ def testJson(request):
     #测试User 插入
     uid = next_id()
     user = User(id=uid, nickname=u"xingqi")
-    yield from user.save()
+    user.save()
 
     return response_page_success(message="成功了", data=dlist, total=100, limit= 10, page= 1)
 
