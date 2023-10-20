@@ -53,11 +53,11 @@ def handleQuoteFile(filename):
             "name": (sheet1.cell(row=row, column=1)).value,
             "number": (sheet1.cell(row=row, column=2)).value,
         })
-
+    print(material_list)
     for material in material_list:
         #print(material["name"])
         number = material["number"]
-        print(number)
+        #print(number)
         rec = cursor.execute(sql_detail, number)
         datalist = rec.fetchall()
         if len(datalist) > 0:
