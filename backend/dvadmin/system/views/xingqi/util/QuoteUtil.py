@@ -62,6 +62,7 @@ def handleQuoteFile(filename):
         datalist = rec.fetchall()
         if len(datalist) > 0:
             line = datalist[0]
+            print(line)
             xls_lines.append(
                 [line.FPKID, line.FMATERIALID, line.FNAME, number, line.FNUMBER, line.FMAXPRICE, line.FMINPRICE,
                  line.sFNAME, len(datalist)])
