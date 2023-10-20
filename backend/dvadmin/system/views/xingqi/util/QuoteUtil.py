@@ -57,7 +57,7 @@ def handleQuoteFile(filename):
     for material in material_list:
         #print(material["name"])
         number = material["number"]
-
+        print(number)
         rec = cursor.execute(sql_detail, number)
         datalist = rec.fetchall()
         if len(datalist) > 0:
