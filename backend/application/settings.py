@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     "dvadmin.system",
     "xingqi", #增加星奇APP
-    "fastorm.MyAppConfig", #增加orm
     "drf_yasg",
     "captcha",
     'channels',
