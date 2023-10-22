@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-from fastorm import orm
+from .views.fastorm import orm
 
 class SystemConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
