@@ -2,14 +2,18 @@ from django.apps import AppConfig
 
 
 from .views.fastorm import orm
+import asyncio
 
 class SystemConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'dvadmin.system'
 
+    @asyncio.coroutine
+    def init1(loop):
+        yield from orm.create_pool(loop=loop, None)
+
+
     def ready(self):
-        import asyncio
         loop = asyncio.get_event_loop()
-        yield from orm.create_pool(loop=loop)
-        loop.run_until_complete()
+        loop.run_until_complete(init1(loop))
         loop.run_forever()
