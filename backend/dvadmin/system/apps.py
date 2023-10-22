@@ -9,11 +9,13 @@ class SystemConfig(AppConfig):
     name = 'dvadmin.system'
 
     def ready(self):
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(initA(loop))
-        loop.run_forever()
-
         @asyncio.coroutine
         def initA(loop):
             yield from orm.create_pool(loop=loop)
             return 1
+
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(initA(loop))
+        loop.run_forever()
+
+
