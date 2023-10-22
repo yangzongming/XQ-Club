@@ -10,19 +10,19 @@ import aiomysql
 def log(sql, args=()):
     logging.info('SQL: %s' % sql)
 
-async def create_pool(loop, **kw):
+async def create_pool(loop):
     logging.info('create database connection pool...')
     global __pool
     __pool = await aiomysql.create_pool(
-        host=kw.get('host', 'localhost'),
-        port=kw.get('port', 3306),
-        user=kw['user', 'root'],
-        password=kw['password', 'xingqi123'],
-        db=kw['db', 'django_vue_admin'],
-        charset=kw.get('charset', 'utf8'),
-        autocommit=kw.get('autocommit', True),
-        maxsize=kw.get('maxsize', 10),
-        minsize=kw.get('minsize', 1),
+        host="localhost",
+        port=3306,
+        user="root",
+        password="xingqi123",
+        db="django_vue_admin",
+        charset="utf8",
+        autocommit=True,
+        maxsize=10,
+        minsize=1,
         loop=loop
     )
 

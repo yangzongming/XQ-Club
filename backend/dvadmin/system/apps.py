@@ -10,7 +10,7 @@ class SystemConfig(AppConfig):
 
     @asyncio.coroutine
     def init1(loop):
-        yield from orm.create_pool(loop=loop,{})
+        yield from orm.create_pool(loop=loop)
 
 
     def ready(self):
