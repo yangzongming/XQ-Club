@@ -8,7 +8,7 @@ Models for user, blog, comment.
 __author__ = 'Michael Liao'
 
 import time, uuid
-from dvadmin.system.views.fastorm import orm
+from dvadmin.system.views.fastorm.orm import Model
 
 
 def next_id():
