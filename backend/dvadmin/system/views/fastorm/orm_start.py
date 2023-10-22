@@ -1,6 +1,6 @@
 import asyncio
-from ..fastorm import orm
-from django.apps import AppConfig
+from backend.dvadmin.system.views.fastorm import orm
+
 
 def start():
     print(123)
