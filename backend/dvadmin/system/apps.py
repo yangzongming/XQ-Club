@@ -10,5 +10,6 @@ class SystemConfig(AppConfig):
     def ready(self):
         import asyncio
         loop = asyncio.get_event_loop()
-        orm.create_pool(loop=loop)
-        print("FUCK")
+        yield from orm.create_pool(loop=loop)
+        loop.run_until_complete()
+        loop.run_forever()
