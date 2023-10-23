@@ -15,7 +15,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .util.QuoteUtil import handleQuoteFile
 
-from backend.dvadmin.system.views.xingqi.models.User import User
+from dvadmin.system.views.xingqi.models.User import User
 
 def index(request):
     html = '<h1>星奇测试------ Leo Hello World， I am Django。</h1>'
