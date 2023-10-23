@@ -54,3 +54,4 @@ somewhere==0.0.1
 aiohttp
 jinja2
 aiomysql
+sqlalchemy==1.4.40
