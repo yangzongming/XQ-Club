@@ -1,8 +1,7 @@
-from backend.conf.sql_config import db_info      #导入配置信息
 from sqlalchemy.ext.declarative import declarative_base    #导入declarative_base()函数来创建基类
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker  #导入sessionmaker类函数
-
+from dvadmin.system.util.sql_config import db_info
 
 engine = create_engine(db_url)      #创建引擎
 base = declarative_base(engine)     #使用declarative_base()函数来创建SQLORM基类
