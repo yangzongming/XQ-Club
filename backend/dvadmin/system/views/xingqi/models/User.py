@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker  #导入sessionmaker类函数
 from dvadmin.system.util.sql_config import db_info
 
-engine = create_engine(db_url)      #创建引擎
+engine = create_engine(db_info)      #创建引擎
 base = declarative_base(engine)     #使用declarative_base()函数来创建SQLORM基类
 session = sessionmaker(engine)()    #构建session对象
 
