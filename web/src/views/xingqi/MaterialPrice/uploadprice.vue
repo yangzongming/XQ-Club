@@ -5,8 +5,9 @@
       <el-divider></el-divider>
 
       <el-upload :on-change="upload_File">
-        <el-button size="small" type="primary">上传询价单</el-button>
+        <el-button size="small" type="primary">上传报价单</el-button>
       </el-upload>
+      <div style="margin-bottom: 15px;"></div>
     <div>
     <el-table
       :data="itemList"
@@ -42,7 +43,7 @@ import upload from '@/api/upload'
 
     methods:{
       upload_File(file, filelist) {
-        upload.uploadFile(file.raw)
+        upload.upload_material_price_file(file.raw)
       }
     }
   }

@@ -13,7 +13,7 @@ from .check import request_verify
 from dvadmin.utils.DateEncode import DateEncoder
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from .util.QuoteUtil import handleQuoteFile
+from .util.QuoteUtil import handleQuoteFile, handleMaterialPrice
 
 #from dvadmin.system.views.xingqi.models.User import User, session
 from dvadmin.system.views.xingqi.models.Material import Material, session
@@ -39,6 +39,27 @@ def get_project_list(request):
     return response_page_success(message="成功了", data=dic["data"], total=dic["total"], limit=dic["limit"],
                                  page=dic["page"])
 
+@csrf_exempt
+def upload_material_price_file(request):
+    if request.method == 'POST':
+        file = request.FILES.get("file")
+        if file:
+            filePath = os.path.join(settings.EXCEL_ROOT, file.name)
+            with open(filePath, 'wb+') as fp:
+                for info in file.chunks():
+                    fp.write(info)
+                    #print(info)
+            # 文件在服务端路径 获取配置
+            # 保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
+            handleMaterialPrice(filePath)
+
+            return HttpResponse('上传成功！')
+        else:
+            return HttpResponse('失败了，文件错误')
+    else:
+        return HttpResponse('请选择POST提交文件！')
+
+#上传星奇ERP的询价文件
 @csrf_exempt
 def upload_file(request):
     if request.method == 'POST':

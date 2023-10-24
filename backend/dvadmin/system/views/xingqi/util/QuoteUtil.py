@@ -8,10 +8,26 @@ import pyodbc
 
 from .MailUtil import send_email
 """
-
 """
 
 
+def handleMaterialPrice(filename):
+    file_name = filename
+    refer_excel = openpyxl.load_workbook(file_name)
+    # 获取第一个sheet表格
+    sheet1 = refer_excel['sheet']
+    material_list = []
+    for row in range(2, sheet1.max_row + 1):
+        material_list.append({
+            "material_name": (sheet1.cell(row=row, column=1)).value,
+            "material_number": (sheet1.cell(row=row, column=2)).value,
+            "material_mode": (sheet1.cell(row=row, column=3)).value,
+            "material_brand": (sheet1.cell(row=row, column=4)).value,
+            "price": (sheet1.cell(row=row, column=5)).value,
+        })
+    print(material_list)
+
+#处理星奇系统里面的报价
 def handleQuoteFile(filename):
     conn = pyodbc.connect('Driver={SQL Server};'
                           'Server=172.17.0.239,1433;'

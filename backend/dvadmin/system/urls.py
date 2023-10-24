@@ -52,7 +52,10 @@ urlpatterns = [
     #获取项目列表
     path('xingqi/get_project_list',xingqi_erp.get_project_list,name="get_project_list"),
 
-    #测试文件上传
+    #ERP报价文件上传
     path('xingqi/upload_file',xingqi_erp.upload_file,name="upload_file"),
+
+    #Material报价文件上传
+    path('xingqi/upload_material_price_file',xingqi_erp.upload_material_price_file,name="upload_material_price_file"),
 ]
 urlpatterns += system_url.urls

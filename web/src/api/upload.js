@@ -15,5 +15,15 @@ export default {
         'Content-Type': 'multipart/form-data;charset=UTF-8'
       }
     })
+  },
+  upload_material_price_file (file){
+    const formData = new FormData()
+    console.log(file)
+    formData.append('file', file)
+    axios.post(urlPre + '/upload_material_price_file', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data;charset=UTF-8'
+      }
+    })
   }
 }
