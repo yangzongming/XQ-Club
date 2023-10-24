@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String, Date, Double
-
+from User import base
 
 class MaterialPrice(base):
     __tablename__ = 'material_price'

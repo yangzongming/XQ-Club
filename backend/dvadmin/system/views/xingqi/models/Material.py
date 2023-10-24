@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String, Date
-
+from User import base
 
 class Material(base):
     __tablename__ = 'material'
