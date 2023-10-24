@@ -9,7 +9,7 @@
       </el-upload>
     <div>
     <el-table
-      :data="tableData"
+      :data="itemList"
       style="width: 100%">
       <el-table-column
         prop="date"
@@ -31,6 +31,15 @@
 <script>
 import upload from '@/api/upload'
   export default{
+
+    data(){
+      return{
+        itemList:[
+          {"name": "你好啊", "date": "2023-10-23", "address":"fukkk"}
+        ]
+      }
+    },
+
     methods:{
       upload_File(file, filelist) {
         upload.uploadFile(file.raw)
