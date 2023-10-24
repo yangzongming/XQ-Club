@@ -23,12 +23,12 @@ def index(request):
     return HttpResponse(html, status=200)
 
 def testJson(request):
-    #material = Material(material_number="UJR-6.35MS-L28-AW", material_name=u'1/4VCR短格兰L28', material_brand="FUJIKIN", info="没有描述")
-    #session.add(material)
+    material = Material(material_number="UJR-6.35MS-L28-AW", material_name=u'1/4VCR短格兰L28', material_brand="FUJIKIN", info="没有描述")
+    session.add(material)
+    session.commit()
+
     r1 = session.query(Material).filter(Material.material_number == "UJR-6.35MS-L28-AW").all()
     print(r1)
-
-    session.commit()
     return response_page_success(message="成功了", data="", total=100, limit= 10, page= 1)
 
 def get_purcharse_track_detail(request):

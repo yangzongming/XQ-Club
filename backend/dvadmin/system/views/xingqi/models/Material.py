@@ -24,7 +24,7 @@ class Material(base):
 base.metadata.create_all()
 
 """
-DROP TABLE material;
+DROP TABLE material
 CREATE TABLE `material` (
   `material_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `material_number` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
