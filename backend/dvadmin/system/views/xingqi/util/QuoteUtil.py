@@ -24,7 +24,7 @@ def handleMaterialPrice(filename):
             "material_number": (sheet1.cell(row=row, column=2)).value,
             "material_mode": (sheet1.cell(row=row, column=3)).value,
             "material_brand": (sheet1.cell(row=row, column=4)).value,
-            "price": (sheet1.cell(row=row, column=7)).value,
+            "material_mode": (sheet1.cell(row=row, column=5)).value,
         })
     print(material_list)
     for material in material_list:
@@ -34,7 +34,7 @@ def handleMaterialPrice(filename):
             print(1)
         else:
             m = Material(material_number=material["material_number"], material_name=material["material_name"],
-                                material_brand=material["material_brand"], price=material["price"])
+                                material_brand=material["material_brand"], material_mode=material["material_mode"])
             session.add(m)
     session.commit()
 
