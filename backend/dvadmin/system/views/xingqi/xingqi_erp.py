@@ -15,15 +15,16 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .util.QuoteUtil import handleQuoteFile
 
-from dvadmin.system.views.xingqi.models.User import User, session
+#from dvadmin.system.views.xingqi.models.User import User, session
+from dvadmin.system.views.xingqi.models.Material import Material, session
 
 def index(request):
     html = '<h1>星奇测试------ Leo Hello World， I am Django。</h1>'
     return HttpResponse(html, status=200)
 
 def testJson(request):
-    user = User(id=1000, nickname=u'Hello')
-    session.add(user)
+    material = Material(material_number="UJR-6.35MS-L28-AW", material_name=u'1/4VCR短格兰L28', material_brand="FUJIKIN", info="没有描述")
+    session.add(material)
     session.commit()
     return response_page_success(message="成功了", data="", total=100, limit= 10, page= 1)
 
