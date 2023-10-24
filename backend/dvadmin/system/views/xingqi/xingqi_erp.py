@@ -15,7 +15,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .util.QuoteUtil import handleQuoteFile
 
-from dvadmin.system.views.xingqi.models.User import User
+from dvadmin.system.views.xingqi.models.User import User, session
 
 def index(request):
     html = '<h1>星奇测试------ Leo Hello World， I am Django。</h1>'
@@ -23,7 +23,9 @@ def index(request):
 
 def testJson(request):
     user = User(id=1000, nickname=u'Hello')
-    return response_page_success(message="成功了", data=uid, total=100, limit= 10, page= 1)
+    session.add(user)
+    session.commit()
+    return response_page_success(message="成功了", data="", total=100, limit= 10, page= 1)
 
 def get_purcharse_track_detail(request):
     dic = craw_purcharse_detail()
