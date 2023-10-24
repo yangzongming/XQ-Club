@@ -28,7 +28,7 @@ def handleMaterialPrice(filename):
         })
     print(material_list)
     for material in material_list:
-        r1 = session.query(Material).filter(Material.material_number == material.material_number).all()
+        r1 = session.query(Material).filter(Material.material_number == material["material_number"]).all()
         if len(r1) > 0:
             #说明存在了
             print(1)
