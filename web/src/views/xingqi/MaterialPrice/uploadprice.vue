@@ -1,4 +1,8 @@
 <template>
+    <div>
+      <span>这个功能是为了收集星奇采购部零散的询价单</span>
+      <el-divider></el-divider>
+    <div>
     <el-table
       :data="tableData"
       style="width: 100%">
