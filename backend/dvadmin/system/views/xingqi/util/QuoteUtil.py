@@ -7,6 +7,7 @@ import openpyxl
 import pyodbc
 
 from .MailUtil import send_email
+from dvadmin.system.views.xingqi.models.Material import Material, session
 """
 """
 
@@ -23,9 +24,20 @@ def handleMaterialPrice(filename):
             "material_number": (sheet1.cell(row=row, column=2)).value,
             "material_mode": (sheet1.cell(row=row, column=3)).value,
             "material_brand": (sheet1.cell(row=row, column=4)).value,
-            "price": (sheet1.cell(row=row, column=5)).value,
+            "price": (sheet1.cell(row=row, column=7)).value,
         })
     print(material_list)
+    for material in material_list:
+        r1 = session.query(Material).filter(Material.material_number == material.material_number).all()
+        if len(r1) > 0:
+            #说明存在了
+            print(1)
+        else:
+            m = Material(material_number=material.material_number, material_name=material.material_name,
+                                material_brand=material.material_brand, price=material.price)
+            session.add(m)
+    session.commit()
+
 
 #处理星奇系统里面的报价
 def handleQuoteFile(filename):
