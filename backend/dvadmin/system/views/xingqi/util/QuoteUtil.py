@@ -33,8 +33,8 @@ def handleMaterialPrice(filename):
             #说明存在了
             print(1)
         else:
-            m = Material(material_number=material.material_number, material_name=material.material_name,
-                                material_brand=material.material_brand, price=material.price)
+            m = Material(material_number=material["material_number"], material_name=material["material_name"],
+                                material_brand=material["material_brand"], price=material["price"])
             session.add(m)
     session.commit()
 
