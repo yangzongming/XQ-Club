@@ -9,7 +9,7 @@ session = sessionmaker(engine)()    #构建session对象
 
 class User(base):
     __tablename__ = 'user'
-    id = Column(Integer(10), primary_key=True)
+    id = Column(Integer, primary_key=True)
     nickname = Column(String(50))
 
 base.metadata.create_all()
