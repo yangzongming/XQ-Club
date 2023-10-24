@@ -25,8 +25,7 @@ def index(request):
 def testJson(request):
     #material = Material(material_number="UJR-6.35MS-L28-AW", material_name=u'1/4VCR短格兰L28', material_brand="FUJIKIN", info="没有描述")
     #session.add(material)
-
-    r1 = session.query(Material).filter(Material.material_number == "UJR-6.35MS-L28-AW")
+    r1 = session.query(Material).filter(Material.material_number == "UJR-6.35MS-L28-AW").all()
     print(r1)
 
     session.commit()
