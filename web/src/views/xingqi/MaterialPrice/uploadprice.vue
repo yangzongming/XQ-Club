@@ -49,6 +49,7 @@ import upload from '@/api/upload'
       upload_File(file, filelist) {
         upload.upload_material_price_file(file.raw).then(res=>{
            this.itemList = res.data;
+           console.log(this.itemList)
         })
       }
     }
