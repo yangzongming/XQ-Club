@@ -44,6 +44,7 @@ def material_price_update(request):
     if request.method == 'POST':
         #处理数据吧
         jsonData = json.loads(request.body)
+        print(jsonData)
         saveMaterialPriceList(jsonData.list)
         return JsonResponse({"code": 0}, safe=False)
 
