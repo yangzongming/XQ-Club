@@ -9,7 +9,7 @@
       </el-upload>
       <div style="margin-bottom: 15px;"></div>
 
-      <el-button size="small" type="primary">提交</el-button>
+      <el-button size="small" type="primary" @click="submit()">提交</el-button>
 
     <div>
     <el-table
@@ -36,6 +36,10 @@
         prop="material_number"
         label="规格型号">
       </el-table-column>
+      <el-table-column
+        prop="price"
+        label="单价（含税）">
+      </el-table-column>
     </el-table>
     <div style="margin-bottom: 30px;"></div>
   </div>
@@ -47,9 +51,7 @@ import upload from '@/api/upload'
 
     data(){
       return{
-        itemList:[
-          {"name": "你好啊", "date": "2023-10-23", "address":"fukkk"}
-        ]
+        itemList:[]
       }
     },
 
@@ -59,6 +61,8 @@ import upload from '@/api/upload'
            this.itemList = res.data;
            console.log(this.itemList)
         })
+      },
+      submit(){
       }
     }
   }

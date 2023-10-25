@@ -22,6 +22,7 @@ def handleMaterialPrice(filename):
             "material_mode": (sheet1.cell(row=row, column=3)).value,
             "material_brand": (sheet1.cell(row=row, column=4)).value,
             "material_mode": (sheet1.cell(row=row, column=5)).value,
+            "price": (sheet1.cell(row=row, column=7)).value,
         })
     for material in material_list:
         r1 = session.query(Material).filter(Material.material_number == material["material_number"]).all()
