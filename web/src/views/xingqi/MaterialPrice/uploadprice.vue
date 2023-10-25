@@ -12,6 +12,7 @@
     <el-table
       :data="itemList"
       style="width: 100%"
+      ref="scrollTable"
       border fit highlight-current-row>
       <el-table-column
         prop="material_brand"
