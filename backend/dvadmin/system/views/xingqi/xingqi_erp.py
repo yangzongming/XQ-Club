@@ -13,7 +13,7 @@ from .check import request_verify
 from dvadmin.utils.DateEncode import DateEncoder
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from .util.QuoteUtil import handleQuoteFile, handleMaterialPrice
+from .util.QuoteUtil import handleQuoteFile, handleMaterialPrice, saveMaterialPriceList
 
 #from dvadmin.system.views.xingqi.models.User import User, session
 from dvadmin.system.views.xingqi.models.Material import Material, session
@@ -42,7 +42,10 @@ def get_project_list(request):
 @csrf_exempt
 def material_price_update(request):
     if request.method == 'POST':
-        print(json.loads(request.body))
+        #处理数据吧
+        jsonData = json.loads(request.body)
+        saveMaterialPriceList(jsonData.list)
+        return JsonResponse({"code": 0}, safe=False)
 
 
 #处理星奇-Club报价上传文件

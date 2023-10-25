@@ -39,7 +39,14 @@ def handleMaterialPrice(filename):
     return material_list
 
 
-
+#保存报价信息
+def saveMaterialPriceList(list):
+    for material in list:
+        r1 = session.query(Material).filter(Material.material_number == material["material_number"]).all()
+        if len(r1) > 0:
+            print(r1[0].material_number)
+        else:
+            print("FUCK it is none")
 
 
 #处理星奇系统里面的报价

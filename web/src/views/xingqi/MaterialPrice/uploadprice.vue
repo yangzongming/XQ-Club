@@ -63,7 +63,7 @@ import upload from '@/api/upload'
         })
       },
       submit(){
-        upload.update_price_list([]).then(res=>{
+        upload.update_price_list(this.itemList).then(res=>{
           console.log(res)
         })
       }

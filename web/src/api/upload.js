@@ -24,8 +24,8 @@ export default {
       }
     })
   },
-  update_price_list (){
-    return axios.post(urlPre + '/material_price_update', {"name":"123"}, {
+  update_price_list (data){
+    return axios.post(urlPre + '/material_price_update', data, {
 
     })
   }
