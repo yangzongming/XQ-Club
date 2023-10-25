@@ -13,18 +13,22 @@
       :data="itemList"
       style="width: 100%">
       <el-table-column
-        prop="date"
-        label="日期"
+        prop="material_brand"
+        label="品牌"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="name"
-        label="姓名"
+        prop="material_mode"
+        label="类型"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="address"
-        label="地址">
+        prop="material_name"
+        label="产品名称">
+      </el-table-column>
+      <el-table-column
+        prop="material_number"
+        label="规格型号">
       </el-table-column>
     </el-table>
 </template>
@@ -43,7 +47,9 @@ import upload from '@/api/upload'
 
     methods:{
       upload_File(file, filelist) {
-        upload.upload_material_price_file(file.raw)
+        upload.upload_material_price_file(file.raw).then(res=>{
+           this.itemList = res.data;
+        })
       }
     }
   }
