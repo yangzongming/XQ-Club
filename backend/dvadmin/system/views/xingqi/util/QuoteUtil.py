@@ -26,7 +26,6 @@ def handleMaterialPrice(filename):
             "material_brand": (sheet1.cell(row=row, column=4)).value,
             "material_mode": (sheet1.cell(row=row, column=5)).value,
         })
-    print(material_list)
     for material in material_list:
         r1 = session.query(Material).filter(Material.material_number == material["material_number"]).all()
         if len(r1) > 0:
@@ -36,7 +35,10 @@ def handleMaterialPrice(filename):
             m = Material(material_number=material["material_number"], material_name=material["material_name"],
                                 material_brand=material["material_brand"], material_mode=material["material_mode"])
             session.add(m)
+            print(m.material_id)
     session.commit()
+
+    #处理报价信息
 
 
 #处理星奇系统里面的报价
