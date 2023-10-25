@@ -35,7 +35,6 @@ def handleMaterialPrice(filename):
             print(m.material_id)
     session.commit()
     #先增加物料信息
-
     return material_list
 
 

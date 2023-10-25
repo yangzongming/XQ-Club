@@ -24,6 +24,8 @@ export default {
       headers: {
         'Content-Type': 'multipart/form-data;charset=UTF-8'
       }
+    }).then(res=>{
+      console.log('res=',res)
     })
   }
 }
