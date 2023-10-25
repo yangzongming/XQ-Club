@@ -6,7 +6,7 @@ import time, os, tarfile
 import openpyxl
 import pyodbc
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 import json
 from .check import request_verify
@@ -51,13 +51,13 @@ def upload_material_price_file(request):
                     #print(info)
             # 文件在服务端路径 获取配置
             # 保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
-            handleMaterialPrice(filePath)
+            data = handleMaterialPrice(filePath)
 
-            return HttpResponse('上传成功！')
+            return JsonResponse(data)
         else:
-            return HttpResponse('失败了，文件错误')
+            return JsonResponse('失败了，文件错误')
     else:
-        return HttpResponse('请选择POST提交文件！')
+        return JsonResponse('请选择POST提交文件！')
 
 #上传星奇ERP的询价文件
 @csrf_exempt

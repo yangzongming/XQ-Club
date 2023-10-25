@@ -8,9 +8,6 @@ import pyodbc
 
 from .MailUtil import send_email
 from dvadmin.system.views.xingqi.models.Material import Material, session
-"""
-"""
-
 
 def handleMaterialPrice(filename):
     file_name = filename
@@ -37,8 +34,12 @@ def handleMaterialPrice(filename):
             session.add(m)
             print(m.material_id)
     session.commit()
+    #先增加物料信息
 
-    #处理报价信息
+    return material_list
+
+
+
 
 
 #处理星奇系统里面的报价
