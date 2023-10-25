@@ -30,7 +30,7 @@ def handleMaterialPrice(filename):
         r1 = session.query(Material).filter(Material.material_number == material["material_number"]).all()
         if len(r1) > 0:
             #说明存在了
-            print(1)
+            print("这个料存在"+material["material_number"])
         else:
             m = Material(material_number=material["material_number"], material_name=material["material_name"],
                                 material_brand=material["material_brand"], material_mode=material["material_mode"])
