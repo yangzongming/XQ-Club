@@ -53,11 +53,11 @@ def upload_material_price_file(request):
             # 保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
             data = handleMaterialPrice(filePath)
 
-            return JsonResponse(data)
+            return JsonResponse(data, safe=False)
         else:
-            return JsonResponse('失败了，文件错误')
+            return JsonResponse('失败了，文件错误', safe=False)
     else:
-        return JsonResponse('请选择POST提交文件！')
+        return JsonResponse('请选择POST提交文件！', safe=False)
 
 #上传星奇ERP的询价文件
 @csrf_exempt
