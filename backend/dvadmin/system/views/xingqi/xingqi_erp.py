@@ -42,7 +42,7 @@ def get_project_list(request):
 @csrf_exempt
 def material_price_update(request):
     if request.method == 'POST':
-        print(request.POST['code'])
+        print(json.loads(request.body))
 
 
 #处理星奇-Club报价上传文件

@@ -25,9 +25,7 @@ export default {
     })
   },
   update_price_list (){
-    let params = new URLSearchParams();
-    params.append('code', "ficl")
-    return axios.post(urlPre + '/material_price_update', params, {
+    return axios.post(urlPre + '/material_price_update', {"name":"123"}, {
 
     })
   }
