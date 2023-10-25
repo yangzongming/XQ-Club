@@ -12,7 +12,7 @@
     <el-table
       :data="itemList"
       style="width: 100%"
-      max-height="600"
+      max-height="400"
       ref="scrollTable"
       border fit highlight-current-row>
       <el-table-column
