@@ -39,8 +39,11 @@ def get_project_list(request):
     return response_page_success(message="成功了", data=dic["data"], total=dic["total"], limit=dic["limit"],
                                  page=dic["page"])
 
+@csrf_exempt
 def material_price_update(request):
-    print(123)
+    if request.method == 'POST':
+        print(request.POST['code'])
+
 
 #处理星奇-Club报价上传文件
 @csrf_exempt

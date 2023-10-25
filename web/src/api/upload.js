@@ -23,5 +23,11 @@ export default {
         'Content-Type': 'multipart/form-data;charset=UTF-8'
       }
     })
+  },
+  update_price_list (){
+    let data = {"code":"1234","name":"yyyy"};
+    return axios.post(urlPre + '/material_price_update', data, {
+
+    })
   }
 }

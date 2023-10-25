@@ -57,5 +57,9 @@ urlpatterns = [
 
     #Material报价文件上传
     path('xingqi/upload_material_price_file',xingqi_erp.upload_material_price_file,name="upload_material_price_file"),
+
+    #Material报价list
+    path('xingqi/material_price_update',xingqi_erp.material_price_update,name="material_price_update"),
+
 ]
 urlpatterns += system_url.urls
