@@ -11,7 +11,8 @@
     <div>
     <el-table
       :data="itemList"
-      style="width: 100%">
+      style="width: 100%"
+      border fit highlight-current-row>
       <el-table-column
         prop="material_brand"
         label="品牌"
@@ -32,11 +33,6 @@
       </el-table-column>
     </el-table>
 </template>
-
-.el-table {
-  display: flex;
-  flex-direction: column;
-}
 
 <script>
 import upload from '@/api/upload'
