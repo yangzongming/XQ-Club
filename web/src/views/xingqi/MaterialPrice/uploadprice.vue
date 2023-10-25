@@ -33,6 +33,11 @@
     </el-table>
 </template>
 
+.el-table {
+  display: flex;
+  flex-direction: column;
+}
+
 <script>
 import upload from '@/api/upload'
   export default{
