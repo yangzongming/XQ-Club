@@ -8,7 +8,6 @@ const urlPre = 'http://172.17.1.249:9602/api/system/xingqi'
 export default {
   uploadFile (file) {
     const formData = new FormData()
-    console.log(file)
     formData.append('file', file)
     axios.post(urlPre + '/upload_file', formData, {
       headers: {
@@ -18,9 +17,8 @@ export default {
   },
   upload_material_price_file (file){
     const formData = new FormData()
-    console.log(file)
     formData.append('file', file)
-    axios.post(urlPre + '/upload_material_price_file', formData, {
+    return axios.post(urlPre + '/upload_material_price_file', formData, {
       headers: {
         'Content-Type': 'multipart/form-data;charset=UTF-8'
       }
