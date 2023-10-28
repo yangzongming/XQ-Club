@@ -8,6 +8,7 @@ import pyodbc
 
 from .MailUtil import send_email
 from dvadmin.system.views.xingqi.models.Material import Material, session
+from dvadmin.system.views.xingqi.models.Material.MaterialPrice import MaterialPrice
 
 def handleMaterialPrice(filename):
     file_name = filename
@@ -41,12 +42,19 @@ def handleMaterialPrice(filename):
 
 #保存报价信息
 def saveMaterialPriceList(list):
-    for material in list:
-        r1 = session.query(Material).filter(Material.material_number == material["material_number"]).all()
+    for mPrice in list:
+        r1 = session.query(Material).filter(Material.material_number == mPrice["material_number"]).all()
         if len(r1) > 0:
             print(r1[0].material_number)
+            mp = MaterialPrice(price=mPrice["price"],
+                               material_id=r1[0].material_id,
+                               amount = mPrice["amount"],
+                               supplier = mPrice["supplier"],
+                               creator = mPrice["creator"])
+            session.add(mp)
         else:
             print("FUCK it is none")
+    session.commit()
 
 
 #处理星奇系统里面的报价
