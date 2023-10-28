@@ -8,7 +8,7 @@ import pyodbc
 
 from .MailUtil import send_email
 from dvadmin.system.views.xingqi.models.Material import Material, session
-from dvadmin.system.views.xingqi.models.Material.MaterialPrice import MaterialPrice
+from dvadmin.system.views.xingqi.models.MaterialPrice import MaterialPrice
 
 def handleMaterialPrice(filename):
     file_name = filename
