@@ -18,21 +18,22 @@ def handleMaterialPrice(filename):
     material_list = []
     for row in range(2, sheet1.max_row + 1):
         material_list.append({
-            "material_name": (sheet1.cell(row=row, column=1)).value,
-            "material_number": (sheet1.cell(row=row, column=2)).value,
-            "material_mode": (sheet1.cell(row=row, column=3)).value,
-            "material_brand": (sheet1.cell(row=row, column=4)).value,
-            "material_mode": (sheet1.cell(row=row, column=5)).value,
-            "price": (sheet1.cell(row=row, column=7)).value,
+            "name": (sheet1.cell(row=row, column=1)).value,
+            "number": (sheet1.cell(row=row, column=2)).value,
+            "mode": (sheet1.cell(row=row, column=3)).value,
+            "brand": (sheet1.cell(row=row, column=4)).value,
+            "supplier": (sheet1.cell(row=row, column=5)).value,
+            "amount": (sheet1.cell(row=row, column=7)).value,
+            "price": (sheet1.cell(row=row, column=8)).value,
         })
     for material in material_list:
-        r1 = session.query(Material).filter(Material.material_number == material["material_number"]).all()
+        r1 = session.query(Material).filter(Material.material_number == material["number"]).all()
         if len(r1) > 0:
             #说明存在了
-            print("这个料存在"+material["material_number"])
+            print("这个料存在"+material["number"])
         else:
-            m = Material(material_number=material["material_number"], material_name=material["material_name"],
-                                material_brand=material["material_brand"], material_mode=material["material_mode"])
+            m = Material(material_number=material["number"], material_name=material["name"],
+                                material_brand=material["brand"], material_mode=material["mode"])
             session.add(m)
             print(m.material_id)
     session.commit()
@@ -48,9 +49,9 @@ def saveMaterialPriceList(list):
             print(r1[0].material_number)
             mp = MaterialPrice(price=mPrice["price"],
                                material_id=r1[0].material_id,
-                               amount = 100, #mPrice["amount"],
-                               supplier = "none", #mPrice["supplier"],
-                               creator = "leo") # mPrice["creator"])
+                               amount = mPrice["amount"],
+                               supplier = mPrice["supplier"],
+                               creator = "leo yang")
             session.add(mp)
         else:
             print("FUCK it is none")
