@@ -44,7 +44,7 @@ def handleMaterialPrice(filename):
 #保存报价信息
 def saveMaterialPriceList(list):
     for mPrice in list:
-        r1 = session.query(Material).filter(Material.material_number == mPrice["material_number"]).all()
+        r1 = session.query(Material).filter(Material.material_number == mPrice["number"]).all()
         if len(r1) > 0:
             print(r1[0].material_number)
             mp = MaterialPrice(price=mPrice["price"],
