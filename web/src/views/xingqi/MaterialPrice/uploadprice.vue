@@ -19,21 +19,21 @@
       ref="scrollTable"
       border fit highlight-current-row>
       <el-table-column
-        prop="material_brand"
+        prop="brand"
         label="品牌"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="material_mode"
+        prop="mode"
         label="类型"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="material_name"
+        prop="name"
         label="产品名称">
       </el-table-column>
       <el-table-column
-        prop="material_number"
+        prop="number"
         label="规格型号">
       </el-table-column>
       <el-table-column
