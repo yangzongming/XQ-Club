@@ -1,5 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base    #导入declarative_base()函数来创建基类
-from sqlalchemy import create_engine, Column, Integer, String, Date, Double
+from sqlalchemy import create_engine, Column, Integer, String, Date, Float
 from sqlalchemy.orm import sessionmaker  #导入sessionmaker类函数
 from dvadmin.system.util.sql_config import db_info
 
@@ -12,7 +12,7 @@ class MaterialPrice(base):
     __tablename__ = 'material_price'
     id = Column(Integer, primary_key=True)
     material_id = Column(Integer)
-    price = Column(Double)
+    price = Column(Float)
     amount = Column(Integer)
     supplier = Column(String(50))
     creator = Column(String(50))  # 创建者
