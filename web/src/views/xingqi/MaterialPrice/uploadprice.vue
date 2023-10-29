@@ -70,6 +70,7 @@
       },
       submit(){
         this.addPriceSummaryDialogVisible = true
+        console.log('submit clock')
         upload.update_price_list(this.itemList).then(res=>{
           console.log(res)
         })
