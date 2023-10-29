@@ -49,6 +49,9 @@
   import upload from '@/api/upload'
   import addPriceSummary from './add_price_summary'
   export default{
+    components:{
+      addPriceSummary,
+    },
 
     data(){
       return{

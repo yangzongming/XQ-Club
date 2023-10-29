@@ -58,7 +58,10 @@
     methods: {
       initData(){
 
-      }
+      },
+      handleClose(){
+        this.$emit('dialogClosed',true);
+      },
     }
   }
 </script>
