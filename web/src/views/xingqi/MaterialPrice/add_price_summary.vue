@@ -40,6 +40,7 @@
     },
 
     created(){
+      console.log('dialog created')
       this.initData();
     },
 
