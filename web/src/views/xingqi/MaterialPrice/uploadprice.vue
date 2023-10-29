@@ -5,12 +5,9 @@
       <span>这个功能是为了收集星奇采购部零散的询价单</span>
       <el-divider></el-divider>
       <el-upload :on-change="upload_File">
-        <el-button size="small" type="primary">上传报价单</el-button>
+        <el-button size="small" type="primary" :style="{ display: uploadButtonVisible }">上传报价单</el-button>
       </el-upload>
       <div style="margin-bottom: 15px;"></div>
-
-      <el-button size="small" type="primary" @click="submit()" :style="{ display: submitVisible }">提交</el-button>
-
     <div>
     <el-table
       :data="itemList"
@@ -41,6 +38,7 @@
         label="单价（含税）">
       </el-table-column>
     </el-table>
+    <el-button size="small" type="primary" @click="submit()" :style="{ display: submitButtonVisible }">提交</el-button>
     <div style="margin-bottom: 30px;"></div>
   </div>
 </template>
@@ -52,7 +50,8 @@ import upload from '@/api/upload'
     data(){
       return{
         itemList:[],
-        submitVisible: '',
+        submitButtonVisible: 'none',
+        uploadButtonVisible: '',
       }
     },
 
@@ -61,7 +60,8 @@ import upload from '@/api/upload'
         upload.upload_material_price_file(file.raw).then(res=>{
            this.itemList = res.data;
            console.log(this.itemList)
-           this.submitVisible = 'none'
+           this.submitButtonVisible = ''
+           this.uploadButtonVisible = 'none'
         })
       },
       submit(){
