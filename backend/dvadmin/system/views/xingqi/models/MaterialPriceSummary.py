@@ -7,38 +7,29 @@ engine = create_engine(db_info)      #创建引擎
 base = declarative_base(engine)     #使用declarative_base()函数来创建SQLORM基类
 session = sessionmaker(engine)()    #构建session对象
 
-#记录物料的报价信息
-class MaterialPrice(base):
-    __tablename__ = 'material_price'
+#报价汇总
+class MaterialPriceSummary(base):
+    __tablename__ = 'material_price_summary'
     id = Column(Integer, primary_key=True)
-    material_id = Column(Integer)
-    price = Column(Float)
-    amount = Column(Integer)
     supplier = Column(String(50))
     creator = Column(String(50))  # 创建者
     info = Column(String(50))
-    xingqi_number = Column(String(50))
     create_time = Column(Date)
     modify_time = Column(Date)
 
 base.metadata.create_all()
 
-
 """
-DROP TABLE material_price
-CREATE TABLE `material_price` (
+DROP TABLE material_price_summary
+CREATE TABLE `material_price_summary` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `material_id` int(10) unsigned NOT NULL,
-  `price` double unsigned DEFAULT '0',
-  `amount` int(10) unsigned NOT NULL,
   `supplier` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `creator` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `xingqi_number` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `info` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modify_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-SHOW CREATE TABLE `material_price`;
+SHOW CREATE TABLE `material_price_summary`;
 
 """

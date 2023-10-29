@@ -9,7 +9,7 @@
       </el-upload>
       <div style="margin-bottom: 15px;"></div>
 
-      <el-button size="small" type="primary" @click="submit()">提交</el-button>
+      <el-button size="small" type="primary" @click="submit()" :visible="submitVisible">提交</el-button>
 
     <div>
     <el-table
@@ -51,7 +51,8 @@ import upload from '@/api/upload'
 
     data(){
       return{
-        itemList:[]
+        itemList:[],
+        submitVisible: False,
       }
     },
 

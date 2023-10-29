@@ -58,7 +58,7 @@ def saveMaterialPriceList(list):
     session.commit()
 
 
-#处理星奇系统里面的报价
+#处理星奇系统里面的报价明细
 def handleQuoteFile(filename):
     conn = pyodbc.connect('Driver={SQL Server};'
                           'Server=172.17.0.239,1433;'
