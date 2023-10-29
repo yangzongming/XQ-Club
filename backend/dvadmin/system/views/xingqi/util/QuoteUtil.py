@@ -50,8 +50,7 @@ def saveMaterialPriceList(list):
             mp = MaterialPrice(price=mPrice["price"],
                                material_id=r1[0].material_id,
                                amount = mPrice["amount"],
-                               supplier = mPrice["supplier"],
-                               creator = "leo yang")
+                               supplier = mPrice["supplier"])
             session.add(mp)
         else:
             print("FUCK it is none")

@@ -14,6 +14,7 @@ class MaterialPriceSummary(base):
     supplier = Column(String(50))
     creator = Column(String(50))  # 创建者
     info = Column(String(50))
+    filename = Column(String(50)) #存储的报价文件路径
     create_time = Column(Date)
     modify_time = Column(Date)
 
@@ -26,6 +27,7 @@ CREATE TABLE `material_price_summary` (
   `supplier` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `creator` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `info` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  `filename` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modify_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)

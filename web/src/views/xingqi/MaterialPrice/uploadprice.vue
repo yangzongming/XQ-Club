@@ -40,11 +40,14 @@
     </el-table>
     <el-button size="small" type="primary" @click="submit()" :style="{ display: submitButtonVisible }">提交</el-button>
     <div style="margin-bottom: 30px;"></div>
+
+    <add-price-summary :dialogVisible="addPriceSummaryDialogVisible" @dialogClosed="addPriceSummaryDialogClosed"></add-price-summary>
   </div>
 </template>
 
 <script>
-import upload from '@/api/upload'
+  import upload from '@/api/upload'
+  import addPriceSummary from './add_price_summary'
   export default{
 
     data(){
@@ -52,6 +55,7 @@ import upload from '@/api/upload'
         itemList:[],
         submitButtonVisible: 'none',
         uploadButtonVisible: '',
+        addPriceSummaryDialogVisible: false,
       }
     },
 
@@ -65,10 +69,14 @@ import upload from '@/api/upload'
         })
       },
       submit(){
+        this.addPriceSummaryDialogVisible = true
         upload.update_price_list(this.itemList).then(res=>{
           console.log(res)
         })
-      }
+      },
+      addPriceSummaryDialogClosed(){
+        this.addPriceSummaryDialogVisible = false;
+      },
     }
   }
 </script>

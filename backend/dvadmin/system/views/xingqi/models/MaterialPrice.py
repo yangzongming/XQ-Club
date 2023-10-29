@@ -15,7 +15,6 @@ class MaterialPrice(base):
     price = Column(Float)
     amount = Column(Integer)
     supplier = Column(String(50))
-    creator = Column(String(50))  # 创建者
     info = Column(String(50))
     xingqi_number = Column(String(50))
     create_time = Column(Date)
@@ -32,7 +31,6 @@ CREATE TABLE `material_price` (
   `price` double unsigned DEFAULT '0',
   `amount` int(10) unsigned NOT NULL,
   `supplier` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `creator` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `xingqi_number` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `info` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
