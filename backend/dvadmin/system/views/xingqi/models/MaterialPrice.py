@@ -11,11 +11,10 @@ session = sessionmaker(engine)()    #构建session对象
 class MaterialPrice(base):
     __tablename__ = 'material_price'
     id = Column(Integer, primary_key=True)
+    material_price_summary_id = Column(Integer)
     material_id = Column(Integer)
     price = Column(Float)
     amount = Column(Integer)
-    supplier = Column(String(50))
-    info = Column(String(50))
     xingqi_number = Column(String(50))
     create_time = Column(Date)
     modify_time = Column(Date)
@@ -27,12 +26,11 @@ base.metadata.create_all()
 DROP TABLE material_price
 CREATE TABLE `material_price` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `material_price_summary_id` int(10) unsigned NOT NULL,
   `material_id` int(10) unsigned NOT NULL,
   `price` double unsigned DEFAULT '0',
   `amount` int(10) unsigned NOT NULL,
-  `supplier` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `xingqi_number` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `info` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modify_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
