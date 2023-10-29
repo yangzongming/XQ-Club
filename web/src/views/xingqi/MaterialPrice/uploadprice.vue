@@ -61,6 +61,7 @@ import upload from '@/api/upload'
         upload.upload_material_price_file(file.raw).then(res=>{
            this.itemList = res.data;
            console.log(this.itemList)
+           this.submitVisible = True
         })
       },
       submit(){
