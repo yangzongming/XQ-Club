@@ -51,7 +51,8 @@
           content:'',
           projectName: '',
         },
-        curDialogVisible:this.dialogVisible,
+        curDialogVisible:this.dialogVisible
+       }
     },
     methods: {
       initData(){
