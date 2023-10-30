@@ -23,7 +23,7 @@
 
     },
 
-    props:["dialogVisible","priceList",fileMd5],
+    props:["dialogVisible","priceList","fileMd5"],
 
     name: 'addPriceSummary',
 
