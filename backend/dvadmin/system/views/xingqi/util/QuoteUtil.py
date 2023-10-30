@@ -52,7 +52,8 @@ def saveMaterialPriceSummary(priceSummaryInfo):
                                filename = 'filename')
     session.add(mps)
     sql = text('SELECT LAST_INSERT_ID();')
-    result_id = engine.execute(sql).all()[0]
+    result_id = engine.execute(sql).all()
+    print(result_id)
     saveMaterialPriceList(priceSummaryInfo.list, result_id)
     session.commit()
 
