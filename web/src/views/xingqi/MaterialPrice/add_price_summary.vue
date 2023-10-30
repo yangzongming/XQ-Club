@@ -57,7 +57,7 @@
         this.$emit('dialogClosed',true);
       },
       onSubmit(){
-        upload.update_price_list({}).then(res=>{
+        upload.save_material_price_summary({}).then(res=>{
           console.log(res)
         })
       }
