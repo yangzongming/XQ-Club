@@ -10,6 +10,7 @@ from .MailUtil import send_email
 from dvadmin.system.views.xingqi.models.Material import Material, session
 from dvadmin.system.views.xingqi.models.MaterialPrice import MaterialPrice
 
+#处理报价文件
 def handleMaterialPrice(filename):
     file_name = filename
     refer_excel = openpyxl.load_workbook(file_name)
@@ -40,6 +41,9 @@ def handleMaterialPrice(filename):
     #先增加物料信息
     return material_list
 
+
+def saveMaterialPriceSummary(priceSummaryInfo):
+    print(123)
 
 #保存报价信息
 def saveMaterialPriceList(list):
