@@ -59,7 +59,6 @@ def material_price_update(request):
         #处理数据吧
         jsonData = json.loads(request.body)
         #print(jsonData)
-        saveMaterialPriceList(jsonData)
         return JsonResponse({"code": 0}, safe=False)
 
 
