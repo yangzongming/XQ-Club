@@ -52,19 +52,19 @@ def saveMaterialPriceSummary(priceSummaryInfo):
                                filename = 'filename')
     session.add(mps)
     sql = text('SELECT LAST_INSERT_ID();')
-    results = engine.execute(sql)
-    for record in results:
-        print("\n", record)
+    result_id = engine.execute(sql)[0]
+    saveMaterialPriceList(priceSummaryInfo.list, result_id)
     session.commit()
 
 
 #保存报价信息
-def saveMaterialPriceList(list):
+def saveMaterialPriceList(list, material_price_summary_id):
     for mPrice in list:
         r1 = session.query(Material).filter(Material.material_number == mPrice["number"]).all()
         if len(r1) > 0:
             print(r1[0].material_number)
             mp = MaterialPrice(price=mPrice["price"],
+                               material_price_summary_id = material_price_summary_id,
                                material_id=r1[0].material_id,
                                amount = mPrice["amount"],
                                supplier = mPrice["supplier"])

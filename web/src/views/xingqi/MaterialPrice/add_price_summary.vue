@@ -23,13 +23,16 @@
 
     },
 
-    props:["dialogVisible"],
+    props:["dialogVisible","priceList"],
 
     name: 'addPriceSummary',
 
     watch:{
       dialogVisible(val){
         this.curDialogVisible = val;
+      },
+      priceList(val){
+        this.curPriceList = val;
       },
     },
 
@@ -46,7 +49,8 @@
           content:'',
           projectName: '',
         },
-        curDialogVisible:this.dialogVisible
+        curDialogVisible:this.dialogVisible,
+        curPriceList: this.priceList,
        }
     },
     methods: {
@@ -57,7 +61,10 @@
         this.$emit('dialogClosed',true);
       },
       onSubmit(){
-        upload.save_material_price_summary({}).then(res=>{
+        upload.save_material_price_summary({
+          'list': this.curPriceList,
+          'info': this.config.summary,
+        }).then(res=>{
           console.log(res)
         })
       }

@@ -41,7 +41,10 @@
     <el-button size="small" type="primary" @click="submit()" :style="{ display: submitButtonVisible }">提交</el-button>
     <div style="margin-bottom: 30px;"></div>
 
-    <add-price-summary :dialogVisible="addPriceSummaryDialogVisible" @dialogClosed="addPriceSummaryDialogClosed"></add-price-summary>
+    <add-price-summary
+    :dialogVisible = "addPriceSummaryDialogVisible"
+    :priceList = "itemList"
+    @dialogClosed="addPriceSummaryDialogClosed"></add-price-summary>
   </div>
 </template>
 
