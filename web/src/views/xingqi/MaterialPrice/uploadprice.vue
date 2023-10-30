@@ -78,6 +78,7 @@
              this.uploadButtonVisible = 'none'
            }else{
              console.log('fuck')
+             this.$alert(res.data.errmsg)
            }
         })
       },

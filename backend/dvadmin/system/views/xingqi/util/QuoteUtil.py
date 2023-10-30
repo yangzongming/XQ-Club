@@ -19,7 +19,7 @@ def handleMaterialPrice(filename, file_md5):
     #排查文件是否上传过，如果上传提示用户
     mps = session.query(MaterialPriceSummary).filter(MaterialPriceSummary.file_md5 == file_md5).all()
     if len(mps) > 0:
-        return {'code': -1, 'errormsg': '已经存在文件了'}
+        return {'code': -1, 'errmsg': '已经存在文件了'}
 
     file_name = filename
     print(file_name)
