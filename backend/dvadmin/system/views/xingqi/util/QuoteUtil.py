@@ -5,7 +5,7 @@ import requests
 import time, os, tarfile
 import openpyxl
 import pyodbc
-import hashlib
+
 
 from .MailUtil import send_email
 from dvadmin.system.views.xingqi.models.Material import Material, session, engine
@@ -15,13 +15,8 @@ from sqlalchemy import text
 
 
 #处理报价文件
-def handleMaterialPrice(filename):
+def handleMaterialPrice(filename, file_md5):
     #排查文件是否上传过，如果上传提示用户
-
-    with open(filename, 'wb+') as fp:
-        content = fp.read()
-        fp.close()
-        file_md5 = hashlib.md5(content).hexdigest()
     mps = session.query(MaterialPriceSummary).filter(MaterialPriceSummary.file_md5 == file_md5).all()
     if len(mps) > 0:
         return {'code': -1, 'errormsg': '已经存在文件了'}

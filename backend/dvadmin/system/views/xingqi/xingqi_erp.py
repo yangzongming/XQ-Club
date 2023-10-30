@@ -5,7 +5,7 @@ import requests
 import time, os, tarfile
 import openpyxl
 import pyodbc
-
+import hashlib
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -70,13 +70,16 @@ def upload_material_price_file(request):
         file = request.FILES.get("file")
         if file:
             filePath = os.path.join(settings.EXCEL_ROOT, file.name)
+            file_md5 = ''
             with open(filePath, 'wb+') as fp:
                 for info in file.chunks():
                     fp.write(info)
-                    fp.close()
+                content = fp.read()
+                file_md5 = hashlib.md5(content).hexdigest()
+                fp.close()
             #文件在服务端路径 获取配置
             #保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
-            dataInfo = handleMaterialPrice(filePath)
+            dataInfo = handleMaterialPrice(filePath, file_md5)
             if dataInfo['code'] == 0:
                 return JsonResponse(dataInfo, safe=False)
             else:
