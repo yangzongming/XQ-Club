@@ -73,8 +73,8 @@ def upload_material_price_file(request):
             with open(filePath, 'wb+') as fp:
                 for info in file.chunks():
                     fp.write(info)
-            # 文件在服务端路径 获取配置
-            # 保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
+            #文件在服务端路径 获取配置
+            #保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
             dataInfo = handleMaterialPrice(filePath)
             if dataInfo['code'] == 0:
                 return JsonResponse(dataInfo, safe=False)

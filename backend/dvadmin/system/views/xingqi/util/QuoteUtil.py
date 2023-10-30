@@ -16,7 +16,6 @@ from sqlalchemy import text
 
 #处理报价文件
 def handleMaterialPrice(filename):
-
     #排查文件是否上传过，如果上传提示用户
     file_md5 = ''
     with open(filename, 'wb+') as fp:
