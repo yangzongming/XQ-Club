@@ -17,7 +17,7 @@ from sqlalchemy import text
 #处理报价文件
 def handleMaterialPrice(filename):
     #排查文件是否上传过，如果上传提示用户
-    """
+
     with open(filename, 'wb+') as fp:
         content = fp.read()
         fp.close()
@@ -25,9 +25,9 @@ def handleMaterialPrice(filename):
     mps = session.query(MaterialPriceSummary).filter(MaterialPriceSummary.file_md5 == file_md5).all()
     if len(mps) > 0:
         return {'code': -1, 'errormsg': '已经存在文件了'}
-    """
 
     file_name = filename
+    print(file_name)
     refer_excel = openpyxl.load_workbook(file_name)
     # 获取第一个sheet表格
     sheet1 = refer_excel['sheet']
