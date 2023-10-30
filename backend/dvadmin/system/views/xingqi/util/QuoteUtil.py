@@ -51,12 +51,12 @@ def saveMaterialPriceSummary(priceSummaryInfo):
                                info = '没有',
                                filename = 'filename')
     session.add(mps)
+    session.commit()
     sql = text('SELECT LAST_INSERT_ID();')
     result_id = engine.execute(sql).all()[0][0]
     print(result_id)
     print(priceSummaryInfo)
     saveMaterialPriceList(priceSummaryInfo['list'], result_id)
-    session.commit()
 
 
 #保存报价信息
