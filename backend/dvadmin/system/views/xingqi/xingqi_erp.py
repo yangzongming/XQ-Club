@@ -44,8 +44,13 @@ def save_material_price_summary(request):
     if request.method == 'POST':
         #存储数据吧
         jsonData = json.loads(request.body)
-        saveMaterialPriceSummary(jsonData)
-        return JsonResponse({"code": 0}, safe=False)
+        if jsonData == None:
+            return JsonResponse({"code": 1}, safe=False)
+        else:
+            saveMaterialPriceSummary(jsonData)
+            return JsonResponse({"code": 0}, safe=False)
+    else:
+        return JsonResponse({"code": 1, 'errmsg': '使用POST方法'}, safe=False)
 
 @csrf_exempt
 def material_price_update(request):

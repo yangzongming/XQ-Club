@@ -61,5 +61,9 @@ urlpatterns = [
     #Material报价list
     path('xingqi/material_price_update',xingqi_erp.material_price_update,name="material_price_update"),
 
+    #上传报价Summary
+    path('xingqi/save_material_price_summary',xingqi_erp.save_material_price_summary,name="save_material_price_summary"),
+
+
 ]
 urlpatterns += system_url.urls

@@ -28,5 +28,10 @@ export default {
     return axios.post(urlPre + '/material_price_update', data, {
 
     })
+  },
+  save_material_price_summary (data){
+    return axios.post(urlPre + '/save_material_price_summary', data, {
+
+    })
   }
 }

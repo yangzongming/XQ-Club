@@ -16,7 +16,7 @@
 <script>
 
   import {parseTime, resetTemp} from '@/utils'
-
+  import upload from '@/api/upload'
   export default {
 
     components: {
@@ -56,6 +56,11 @@
       handleClose(){
         this.$emit('dialogClosed',true);
       },
+      onSubmit(){
+        upload.update_price_list({}).then(res=>{
+          console.log(res)
+        })
+      }
     }
   }
 </script>

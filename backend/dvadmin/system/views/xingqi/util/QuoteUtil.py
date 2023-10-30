@@ -7,8 +7,11 @@ import openpyxl
 import pyodbc
 
 from .MailUtil import send_email
-from dvadmin.system.views.xingqi.models.Material import Material, session
+from dvadmin.system.views.xingqi.models.Material import Material, session, engine
 from dvadmin.system.views.xingqi.models.MaterialPrice import MaterialPrice
+from dvadmin.system.views.xingqi.models.MaterialPriceSummary import MaterialPriceSummary
+from sqlalchemy import text
+
 
 #处理报价文件
 def handleMaterialPrice(filename):
@@ -43,7 +46,17 @@ def handleMaterialPrice(filename):
 
 
 def saveMaterialPriceSummary(priceSummaryInfo):
-    print(123)
+    mps = MaterialPriceSummary(supplier = '默认',
+                               creator = 'leo',
+                               info = '没有',
+                               filename = 'filename')
+    session.add(mps)
+    sql = text('SELECT LAST_INSERT_ID();')
+    results = engine.execute(sql)
+    for record in results:
+        print("\n", record)
+    session.commit()
+
 
 #保存报价信息
 def saveMaterialPriceList(list):
