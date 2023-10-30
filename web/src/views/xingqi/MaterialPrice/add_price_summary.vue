@@ -23,7 +23,7 @@
 
     },
 
-    props:["dialogVisible","priceList"],
+    props:["dialogVisible","priceList",fileMd5],
 
     name: 'addPriceSummary',
 
@@ -34,6 +34,9 @@
       priceList(val){
         this.curPriceList = val;
       },
+      fileMd5(val){
+        this.curFileMd5 = val;
+      }
     },
 
     created(){
@@ -51,6 +54,7 @@
         },
         curDialogVisible:this.dialogVisible,
         curPriceList: this.priceList,
+        curFileMd5: this.fileMd5,
        }
     },
     methods: {
@@ -64,6 +68,7 @@
         upload.save_material_price_summary({
           'list': this.curPriceList,
           'info': this.config.summary,
+          'file_md5': this.curFileMd5,
         }).then(res=>{
           console.log(res)
         })

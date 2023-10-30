@@ -5,6 +5,7 @@ import requests
 import time, os, tarfile
 import openpyxl
 import pyodbc
+import hashlib
 
 from .MailUtil import send_email
 from dvadmin.system.views.xingqi.models.Material import Material, session, engine
@@ -15,6 +16,17 @@ from sqlalchemy import text
 
 #处理报价文件
 def handleMaterialPrice(filename):
+
+    #排查文件是否上传过，如果上传提示用户
+    file_md5 = ''
+    with open(filename, 'wb+') as fp:
+        content = fp.read()
+        fp.close()
+        file_md5 = hashlib.md5(content).hexdigest()
+    mps = session.query(MaterialPriceSummary).filter(MaterialPriceSummary.file_md5 == file_md5).all()
+    if len(mps) > 0:
+        return {'code': -1, 'errormsg': '已经存在文件了'}
+
     file_name = filename
     refer_excel = openpyxl.load_workbook(file_name)
     # 获取第一个sheet表格
@@ -42,14 +54,20 @@ def handleMaterialPrice(filename):
             print(m.material_id)
     session.commit()
     #先增加物料信息
-    return material_list
+    return {
+        'code': 0,
+        'errmsg': 'ok',
+        'material_list': material_list,
+        'file_md5': file_md5,
+    }
 
 
 def saveMaterialPriceSummary(priceSummaryInfo):
     mps = MaterialPriceSummary(supplier = '默认',
                                creator = 'leo',
                                info = '没有',
-                               filename = 'filename')
+                               filename = 'filename',
+                               file_md5 = priceSummaryInfo['file_md5'])
     session.add(mps)
     session.commit()
     sql = text('SELECT LAST_INSERT_ID();')

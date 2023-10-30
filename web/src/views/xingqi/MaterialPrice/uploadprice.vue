@@ -44,6 +44,7 @@
     <add-price-summary
     :dialogVisible = "addPriceSummaryDialogVisible"
     :priceList = "itemList"
+    :fileMd5 = "file_md5"
     @dialogClosed="addPriceSummaryDialogClosed"></add-price-summary>
   </div>
 </template>
@@ -59,6 +60,7 @@
     data(){
       return{
         itemList:[],
+        file_md5:'',
         submitButtonVisible: 'none',
         uploadButtonVisible: '',
         addPriceSummaryDialogVisible: false,
@@ -68,8 +70,9 @@
     methods:{
       upload_File(file, filelist) {
         upload.upload_material_price_file(file.raw).then(res=>{
-           this.itemList = res.data;
-           console.log(this.itemList)
+           this.itemList = res.data.material_list;
+           this.file_md5 = res.data.file_md5;
+           //console.log(this.itemList)
            this.submitButtonVisible = ''
            this.uploadButtonVisible = 'none'
         })

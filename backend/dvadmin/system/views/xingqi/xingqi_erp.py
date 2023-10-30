@@ -5,7 +5,6 @@ import requests
 import time, os, tarfile
 import openpyxl
 import pyodbc
-import hashlib
 
 
 from django.http import HttpResponse, JsonResponse
@@ -74,15 +73,13 @@ def upload_material_price_file(request):
             with open(filePath, 'wb+') as fp:
                 for info in file.chunks():
                     fp.write(info)
-                content = fp.read()
-                fp.close()
-                print(hashlib.md5(content).hexdigest())
-                    #print(info)
             # 文件在服务端路径 获取配置
             # 保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
-            data = handleMaterialPrice(filePath)
-
-            return JsonResponse(data, safe=False)
+            dataInfo = handleMaterialPrice(filePath)
+            if dataInfo['code'] == 0:
+                return JsonResponse(dataInfo, safe=False)
+            else:
+                return JsonResponse('失败了，报价文件已经提交过了', safe=False)
         else:
             return JsonResponse('失败了，文件错误', safe=False)
     else:
