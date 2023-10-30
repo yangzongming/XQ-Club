@@ -70,11 +70,15 @@
     methods:{
       upload_File(file, filelist) {
         upload.upload_material_price_file(file.raw).then(res=>{
-           this.itemList = res.data.material_list;
-           this.file_md5 = res.data.file_md5;
-           //console.log(this.itemList)
-           this.submitButtonVisible = ''
-           this.uploadButtonVisible = 'none'
+           if(res.data.code == 0){
+             this.itemList = res.data.material_list;
+             this.file_md5 = res.data.file_md5;
+             //console.log(this.itemList)
+             this.submitButtonVisible = ''
+             this.uploadButtonVisible = 'none'
+           }else{
+             console.log('fuck')
+           }
         })
       },
       submit(){

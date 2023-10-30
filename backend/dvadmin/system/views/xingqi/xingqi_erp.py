@@ -82,7 +82,7 @@ def upload_material_price_file(request):
             if dataInfo['code'] == 0:
                 return JsonResponse(dataInfo, safe=False)
             else:
-                return JsonResponse('失败了，报价文件已经提交过了', safe=False)
+                return JsonResponse(dataInfo, safe=False)
         else:
             return JsonResponse('失败了，文件错误', safe=False)
     else:
