@@ -25,15 +25,15 @@ def handleMaterialPrice(filename, file_md5):
     # 获取第一个sheet表格
     sheet1 = refer_excel['sheet']
     material_list = []
-    for row in range(2, sheet1.max_row + 1):
+    for row in range(6, sheet1.max_row + 1):
         material_list.append({
-            "name": (sheet1.cell(row=row, column=1)).value,
+            "name": (sheet1.cell(row=row, column=4)).value,
             "number": (sheet1.cell(row=row, column=2)).value,
-            "mode": (sheet1.cell(row=row, column=3)).value,
-            "brand": (sheet1.cell(row=row, column=4)).value,
-            "supplier": (sheet1.cell(row=row, column=5)).value,
+            "mode": (sheet1.cell(row=row, column=6)).value,
+            "brand": (sheet1.cell(row=row, column=5)).value,
+            "supplier": (sheet1.cell(row=4, column=14)).value,
             "amount": (sheet1.cell(row=row, column=7)).value,
-            "price": (sheet1.cell(row=row, column=8)).value,
+            "price": (sheet1.cell(row=row, column=14)).value,
         })
     for material in material_list:
         r1 = session.query(Material).filter(Material.material_number == material["number"]).all()

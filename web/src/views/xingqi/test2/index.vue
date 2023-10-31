@@ -4,6 +4,7 @@
     上传Excel文件后，报价会发送到邮箱
     <el-upload
       :on-change="upload_File"
+      :auto-upload="false"
     >
       <el-button size="small" type="primary">上传询价单</el-button>
     </el-upload>
