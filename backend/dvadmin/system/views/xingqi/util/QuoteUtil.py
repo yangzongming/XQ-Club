@@ -25,7 +25,7 @@ def handleMaterialPrice(filename, file_md5):
     file_name = filename
     refer_excel = openpyxl.load_workbook(file_name)
     # 获取第一个sheet表格
-    sheet1 = refer_excel['sheet']
+    sheet1 = refer_excel['比价表']
     material_list = []
     for row in range(6, sheet1.max_row + 1):
         material_list.append({
