@@ -8,6 +8,7 @@ import pyodbc
 
 
 from .MailUtil import send_email
+from .StringUtil import tripString
 from dvadmin.system.views.xingqi.models.Material import Material, session, engine
 from dvadmin.system.views.xingqi.models.MaterialPrice import MaterialPrice
 from dvadmin.system.views.xingqi.models.MaterialPriceSummary import MaterialPriceSummary
@@ -30,9 +31,9 @@ def handleMaterialPrice(filename, file_md5):
     for row in range(6, sheet1.max_row + 1):
         material_list.append({
             "name": (sheet1.cell(row=row, column=4)).value,
-            "number": (sheet1.cell(row=row, column=6)).value,
+            "number": tripString((sheet1.cell(row=row, column=6)).value),
             "mode": "",
-            "brand": (sheet1.cell(row=row, column=5)).value,
+            "brand": tripString((sheet1.cell(row=row, column=5)).value),
             "supplier": (sheet1.cell(row=4, column=14)).value,
             "amount": (sheet1.cell(row=row, column=7)).value,
             "price": (sheet1.cell(row=row, column=14)).value,
