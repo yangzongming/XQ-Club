@@ -77,10 +77,13 @@ def upload_material_price_file(request):
             with open(filePath, 'wb+') as fp:
                 for info in file.chunks():
                     fp.write(info)
-                content = fp.read()
-                print(content)
-                file_md5 = hashlib.md5(content).hexdigest()
                 fp.close()
+            f = open(filePath, encoding='utf-8')
+            content = f.read()
+            f.close()
+            print(content)
+            file_md5 = hashlib.md5(content).hexdigest()
+
             #文件在服务端路径 获取配置
             #保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
             dataInfo = handleMaterialPrice(filePath, file_md5)
