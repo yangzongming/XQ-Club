@@ -78,7 +78,7 @@ def upload_material_price_file(request):
                 for info in file.chunks():
                     fp.write(info)
                 fp.close()
-            f = open(filePath, encoding='utf-8')
+            f = open(filePath)
             content = f.read()
             f.close()
             print(content)
