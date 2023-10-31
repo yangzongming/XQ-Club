@@ -78,6 +78,7 @@ def upload_material_price_file(request):
                 for info in file.chunks():
                     fp.write(info)
                 content = fp.read()
+                print(content)
                 file_md5 = hashlib.md5(content).hexdigest()
                 fp.close()
             #文件在服务端路径 获取配置
