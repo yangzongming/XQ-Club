@@ -17,7 +17,6 @@ export default {
   },
   upload_material_price_file (file){
     const formData = new FormData()
-    console.log('fuck-----')
     formData.append('file', file)
     return axios.post(urlPre + '/upload_material_price_file', formData, {
       headers: {
