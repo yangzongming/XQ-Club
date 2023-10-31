@@ -30,8 +30,8 @@ def handleMaterialPrice(filename, file_md5):
     for row in range(6, sheet1.max_row + 1):
         material_list.append({
             "name": (sheet1.cell(row=row, column=4)).value,
-            "number": (sheet1.cell(row=row, column=2)).value,
-            "mode": (sheet1.cell(row=row, column=6)).value,
+            "number": (sheet1.cell(row=row, column=6)).value,
+            "mode": "",
             "brand": (sheet1.cell(row=row, column=5)).value,
             "supplier": (sheet1.cell(row=4, column=14)).value,
             "amount": (sheet1.cell(row=row, column=7)).value,
