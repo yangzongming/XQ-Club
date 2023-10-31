@@ -19,6 +19,8 @@ def handleMaterialPrice(filename, file_md5):
     #排查文件是否上传过，如果上传提示用户
     mps = session.query(MaterialPriceSummary).filter(MaterialPriceSummary.file_md5 == file_md5).all()
     if len(mps) > 0:
+        print(file_md5)
+        print(mps)
         return {'code': -1, 'errmsg': '已报过价了,不要重复上传。'}
     file_name = filename
     refer_excel = openpyxl.load_workbook(file_name)
