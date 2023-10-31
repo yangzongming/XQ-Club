@@ -18,6 +18,9 @@ from .util.QuoteUtil import handleQuoteFile, handleMaterialPrice, saveMaterialPr
 
 #from dvadmin.system.views.xingqi.models.User import User, session
 from dvadmin.system.views.xingqi.models.Material import Material, session
+import logging
+
+logger = logging.getLogger(__name__)
 
 def index(request):
     html = '<h1>星奇测试------ Leo Hello World， I am Django。</h1>'
@@ -65,6 +68,7 @@ def material_price_update(request):
 #处理星奇-Club报价上传文件
 @csrf_exempt
 def upload_material_price_file(request):
+    logger.info("调用接口------upload_material_price_file")
     if request.method == 'POST':
         file = request.FILES.get("file")
         if file:
