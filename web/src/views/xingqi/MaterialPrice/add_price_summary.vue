@@ -84,6 +84,7 @@
           console.log(res)
           if(res.data.code == 0){
             this.$emit('dialogClosed',true);
+            this.$alert('报价上传成功～')
           }else{
             this.$alert(res.data.errmsg)
             this.$emit('dialogClosed',true);
