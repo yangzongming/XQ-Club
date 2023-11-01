@@ -2,10 +2,10 @@
   <el-dialog :visible.sync="curDialogVisible" width="70%" :before-close="handleClose">
     <h3 style="padding-left: 10px">添加报价单</h3>
     <el-form ref="form" :model="config" label-width="80px">
-      <el-form-item label="填写报价备注信息" style="width: 50%">
-        <el-input type="textarea" :rows="1" placeholder="请输入此次报价需要备注的信息" v-model="config.info"></el-input>
+      <el-form-item label="备注信息" style="width: 50%">
+        <el-input type="textarea" :rows="5" placeholder="请输入此次报价需要备注的信息" v-model="config.info"></el-input>
       </el-form-item>
-      <el-form-item label="填写报价供应商" style="width: 50%">
+      <el-form-item label="供应商" style="width: 50%">
         <el-input type="textarea" :rows="1" placeholder="请输入此次报价的公司名称" v-model="config.supplier"></el-input>
       </el-form-item>
       <el-form-item align="center">
