@@ -2,6 +2,7 @@
   <el-dialog :visible.sync="curDialogVisible" width="70%" :before-close="handleClose">
     <h3 style="padding-left: 10px">添加报价单</h3>
     <el-form ref="form" :model="config" label-width="80px">
+
       <el-form-item label="备注信息" style="width: 50%">
         <el-input type="textarea" :rows="5" placeholder="请输入此次报价需要备注的信息" v-model="config.info"></el-input>
       </el-form-item>
@@ -66,6 +67,14 @@
         this.$emit('dialogClosed',true);
       },
       onSubmit(){
+        if(this.config.info == '' || this.config.info == null){
+          this.$alert('请输入备注信息')
+          return false;
+        }
+        if(this.config.supplier == '' || this.config.supplier == null){
+          this.$alert('请输入供应商信息')
+          return false;
+        }
         upload.save_material_price_summary({
           'list': this.curPriceList,
           'info': this.config.info,
@@ -73,6 +82,12 @@
           'file_md5': this.curFileMd5,
         }).then(res=>{
           console.log(res)
+          if(res.data.code == 0){
+            this.$emit('dialogClosed',true);
+          }else{
+            this.$alert(res.data.errmsg)
+            this.$emit('dialogClosed',true);
+          }
         })
       }
     }
