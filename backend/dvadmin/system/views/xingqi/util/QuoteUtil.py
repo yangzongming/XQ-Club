@@ -8,12 +8,13 @@ import pyodbc
 
 
 from .MailUtil import send_email
-from .StringUtil import tripString
+from .StringUtil import tripString, isEmptyOrNone
 from dvadmin.system.views.xingqi.models.Material import Material, session, engine
 from dvadmin.system.views.xingqi.models.MaterialPrice import MaterialPrice
 from dvadmin.system.views.xingqi.models.MaterialPriceSummary import MaterialPriceSummary
 from sqlalchemy import text
 
+from dvadmin.system.util.sql_config import brand_dic, mode_dic
 
 #处理报价文件
 def handleMaterialPrice(filename, file_md5):
@@ -28,16 +29,36 @@ def handleMaterialPrice(filename, file_md5):
     # 获取第一个sheet表格
     sheet1 = refer_excel['比价表']
     material_list = []
+
+
+    #处理物料 判断mode和brand是否正确？需要反馈给前端，如果不对则修改
+    mode_error_info = []
+    brand_error_info = []
     for row in range(6, sheet1.max_row + 1):
-        material_list.append({
+
+        mode = tripString((sheet1.cell(row=row, column=6)).value)
+        brand = tripString((sheet1.cell(row=row, column=5)).value)
+        dic = {
             "name": (sheet1.cell(row=row, column=4)).value,
             "number": tripString((sheet1.cell(row=row, column=6)).value),
-            "mode": "",
-            "brand": tripString((sheet1.cell(row=row, column=5)).value),
+            "mode": mode,
+            "brand": brand,
             "supplier": (sheet1.cell(row=4, column=14)).value,
             "amount": (sheet1.cell(row=row, column=7)).value,
             "price": (sheet1.cell(row=row, column=14)).value,
-        })
+        }
+        material_list.append(dic)
+        if isEmptyOrNone(mode):
+            mode_error_info.append(row + "类型是空的")
+        if isEmptyOrNone(brand):
+            brand_error_info.append(row + '品牌是空的')
+
+    if len(mode_error_info) > 0 or len(brand_error_info) > 0:
+        return {
+        'code': 2593,
+        'errmsg': '物料品牌或者类型不能是空',
+    }
+
     for material in material_list:
         r1 = session.query(Material).filter(Material.material_number == material["number"]).all()
         if len(r1) > 0:

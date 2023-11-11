@@ -6,7 +6,8 @@ db = 'django_vue_admin'
 
 db_info = f'mysql+pymysql://{username}:{password}@{host}:{port}/{db}'
 
-mode_dic = {
+#品牌
+brand_dic = {
     'Fujikin': '日本',
     'Tk-fujikin': '日本',
     'Swagelok': '美国',
@@ -39,3 +40,18 @@ mode_dic = {
     'Hamlet': '以色列',
     'Truck': '美国'
 }
+
+mode_dic = {
+    '球阀': 'ball valve',
+    'VCR-隔膜阀': '',
+    'VCR-减压阀'
+    '接头': '',
+    'MFC': '',
+    '过滤器': '',
+    'Gasket': '',
+    'igs-block': '',
+    'igs-隔膜阀': '',
+    'PT': '',
+    '未知': '',
+}
+
