@@ -10,5 +10,5 @@ def isEmptyOrNone(text):
         return True
     elif len(tripString(text)) == 0:
         return True
-    else
+    else:
         return False
