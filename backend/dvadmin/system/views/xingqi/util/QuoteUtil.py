@@ -36,7 +36,7 @@ def handleMaterialPrice(filename, file_md5):
     brand_error_info = []
     for row in range(6, sheet1.max_row + 1):
 
-        mode = tripString((sheet1.cell(row=row, column=6)).value)
+        mode = tripString((sheet1.cell(row=row, column=2)).value)
         brand = tripString((sheet1.cell(row=row, column=5)).value)
         dic = {
             "name": (sheet1.cell(row=row, column=4)).value,
