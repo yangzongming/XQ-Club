@@ -55,6 +55,7 @@ def handleMaterialPrice(filename, file_md5):
         'errmsg': 'ok',
         'material_list': material_list,
         'file_md5': file_md5,
+        'filename': filename,
     }
 
 
