@@ -48,9 +48,9 @@ def handleMaterialPrice(filename, file_md5):
             "price": (sheet1.cell(row=row, column=14)).value,
         }
         material_list.append(dic)
-        if isEmptyOrNone(mode):
+        if isEmptyOrNone(mode_dic[mode]):
             mode_error_info.append(row + "类型是空的")
-        if isEmptyOrNone(brand):
+        if isEmptyOrNone(brand_dic[brand]):
             brand_error_info.append(row + '品牌是空的')
 
     if len(mode_error_info) > 0 or len(brand_error_info) > 0:
