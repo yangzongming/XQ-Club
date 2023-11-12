@@ -88,11 +88,11 @@ def handleMaterialPrice(filename, file_md5):
 
 
 def saveMaterialPriceSummary(priceSummaryInfo):
-    mps = MaterialPriceSummary(supplier = priceSummaryInfo['supplier'],
+    mps = MaterialPriceSummary(supplier = priceSummaryInfo.get("supplier"),
                                creator = 'leo',
-                               info = priceSummaryInfo['info'],
-                               filename = 'filename',
-                               file_md5 = priceSummaryInfo['file_md5'])
+                               info = priceSummaryInfo.get("info"),
+                               filename = priceSummaryInfo.get("filename"),
+                               file_md5 = priceSummaryInfo.get("file_md5"))
     session.add(mps)
     session.commit()
     sql = text('SELECT LAST_INSERT_ID();')
