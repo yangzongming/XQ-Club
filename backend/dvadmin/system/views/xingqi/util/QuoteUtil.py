@@ -59,6 +59,8 @@ def handleMaterialPrice(filename, file_md5):
 
     if len(mode_error_info) > 0 or len(brand_error_info) > 0:
         logger.info("error--------物料品牌或者类型不能是空")
+        logger.info(mode_error_info)
+        logger.info(brand_error_info)
         return {
         'code': 2593,
         'errmsg': '物料品牌或者类型不能是空',
