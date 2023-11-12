@@ -15,8 +15,6 @@ from dvadmin.utils.DateEncode import DateEncoder
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .util.QuoteUtil import handleQuoteFile, handleMaterialPrice, saveMaterialPriceList, saveMaterialPriceSummary
-
-#from dvadmin.system.views.xingqi.models.User import User, session
 from dvadmin.system.views.xingqi.models.Material import Material, session
 import logging
 
@@ -72,7 +70,7 @@ def upload_material_price_file(request):
     if request.method == 'POST':
         file = request.FILES.get("file")
         if file:
-            filePath = os.path.join(settings.Quotation_ROOT, file.name)
+            filePath = os.path.join(settings.QUOTATION_ROOT, file.name)
             file_md5 = ''
             with open(filePath, 'wb+') as fp:
                 for info in file.chunks():
