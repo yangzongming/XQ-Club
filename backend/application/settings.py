@@ -152,10 +152,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-FILES = {
-    "file": "/opt/excel/"
-}
-
 EXCEL_ROOT = "/opt/excel/"
 QUOTATION_ROOT = "/opt/xqfiles/quotation/"
 MEDIA_ROOT = "media"  # 项目下的目录
