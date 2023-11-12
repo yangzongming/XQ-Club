@@ -72,7 +72,7 @@ def upload_material_price_file(request):
     if request.method == 'POST':
         file = request.FILES.get("file")
         if file:
-            filePath = os.path.join(settings.EXCEL_ROOT, file.name)
+            filePath = os.path.join(settings.Quotation_ROOT, file.name)
             file_md5 = ''
             with open(filePath, 'wb+') as fp:
                 for info in file.chunks():
