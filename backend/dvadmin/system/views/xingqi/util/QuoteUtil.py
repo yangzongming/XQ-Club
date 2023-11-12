@@ -16,6 +16,9 @@ from sqlalchemy import text
 
 from dvadmin.system.util.sql_config import brand_dic, mode_dic
 
+import logging
+logger = logging.getLogger(__name__)
+
 #处理报价文件
 def handleMaterialPrice(filename, file_md5):
     #排查文件是否上传过，如果上传提示用户
@@ -54,6 +57,7 @@ def handleMaterialPrice(filename, file_md5):
             brand_error_info.append(row + '品牌是空的')
 
     if len(mode_error_info) > 0 or len(brand_error_info) > 0:
+        logger.info("error--------物料品牌或者类型不能是空")
         return {
         'code': 2593,
         'errmsg': '物料品牌或者类型不能是空',
