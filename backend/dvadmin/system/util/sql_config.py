@@ -43,15 +43,15 @@ brand_dic = {
 
 mode_dic = {
     '球阀': 'ball valve',
-    'VCR-隔膜阀': '',
-    'VCR-减压阀'
-    '接头': '',
-    'MFC': '',
-    '过滤器': '',
-    'Gasket': '',
-    'igs-block': '',
-    'igs-隔膜阀': '',
-    'PT': '',
-    '未知': '',
+    'VCR-隔膜阀': 'VCR Diaphragm valve',
+    'VCR-减压阀': 'VCR pressure reducing valve',
+    '接头': 'Fitting',
+    'MFC': 'MFC',
+    '过滤器': 'Filter',
+    'Gasket': 'Gasket',
+    'igs-block': 'igs-block',
+    'igs-隔膜阀': 'igs Diaphragm valve',
+    'PT': 'PT',
+    '未知': '未知',
 }
 
