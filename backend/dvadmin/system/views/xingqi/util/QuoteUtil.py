@@ -53,9 +53,9 @@ def handleMaterialPrice(filename, file_md5):
             mode_error_info.append(row + "类型或品牌是空的")
         else:
             if isEmptyOrNone(mode_dic[mode]):
-                mode_error_info.append(row + "类型是空的")
+                mode_error_info.append("第"+str(row) + "行数据类型是空的")
             if isEmptyOrNone(brand_dic[brand]):
-                brand_error_info.append(row + '品牌是空的')
+                brand_error_info.append("第"+str(row) + '行数据品牌是空的')
 
     if len(mode_error_info) > 0 or len(brand_error_info) > 0:
         logger.info("error--------物料品牌或者类型不能是空")
