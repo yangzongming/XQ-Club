@@ -40,6 +40,7 @@ def handleMaterialPrice(filename, file_md5):
         mode = tripString((sheet1.cell(row=row, column=2)).value)
         brand = tripString((sheet1.cell(row=row, column=5)).value)
         dic = {
+            "xingqi_number": (sheet1.cell(row=row, column=3)).value,
             "name": (sheet1.cell(row=row, column=4)).value,
             "number": tripString((sheet1.cell(row=row, column=6)).value),
             "mode": mode,
@@ -70,10 +71,14 @@ def handleMaterialPrice(filename, file_md5):
         r1 = session.query(Material).filter(Material.material_number == material["number"]).all()
         if len(r1) > 0:
             #说明存在了
-            print("这个料存在"+material["number"])
+            logger.info("这个料存在"+material["number"])
         else:
-            m = Material(material_number=material["number"], material_name=material["name"],
-                                material_brand=material["brand"], material_mode=material["mode"])
+            m = Material(material_number=material.get("number"),
+                         material_name=material.get("name"),
+                                material_brand=material.get("brand"),
+                         material_mode=material.get("mode"),
+                         xingqi_number=material.get("xingqi_number"),
+                         )
             session.add(m)
             print(m.material_id)
     session.commit()
