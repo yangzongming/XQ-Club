@@ -28,7 +28,7 @@ def handleMaterialPrice(filename, file_md5):
         return {'code': -1, 'errmsg': '已报过价了,不要重复上传。'}
     file_name = filename
     refer_excel = openpyxl.load_workbook(file_name)
-    # 获取第一个sheet表格
+    # 获取第一个sheet表格 报错后回复给前端提醒
     sheet1 = refer_excel['比价表']
     material_list = []
 

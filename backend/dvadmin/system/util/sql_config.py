@@ -43,7 +43,7 @@ brand_dic = {
     'Truck': '美国'
 }
 
-#球阀,VCR-隔膜阀,VCR-减压阀,VCR-单向阀,接头,MFC,过滤器,Gasket,igs-block,igs-隔膜阀,PT,未知
+#球阀,VCR-隔膜阀,VCR-减压阀,波纹管阀,VCR-单向阀,接头,MFC,过滤器,Gasket,igs-block,igs-隔膜阀,PT,未知
 mode_dic = {
     '球阀': 'ball valve',
     'VCR-隔膜阀': 'VCR Diaphragm valve',
@@ -55,6 +55,7 @@ mode_dic = {
     'Gasket': 'Gasket',
     'igs-block': 'igs-block',
     'igs-隔膜阀': 'igs Diaphragm valve',
+    '波纹管阀': 'bellow valve',
     'PT': 'PT',
     '未知': '未知',
 }
