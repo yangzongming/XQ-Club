@@ -17,7 +17,7 @@
       <el-option
         v-for="item in brandOptions"
         :key="item.value"
-        :label="item.label"
+        :label="item.value"
         :value="item.value">
       </el-option>
     </el-select>
@@ -26,11 +26,12 @@
       <el-option
         v-for="item in modeOptions"
         :key="item.value"
-        :label="item.label"
+        :label="item.value"
         :value="item.value">
       </el-option>
     </el-select>
 
+    <div style="margin-bottom: 15px;"></div>
 
     <el-table
       :data="itemList"
