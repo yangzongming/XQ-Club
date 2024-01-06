@@ -12,6 +12,26 @@
       </el-upload>
       <div style="margin-bottom: 15px;"></div>
     <div>
+
+    <el-select v-model="brand_value" multiple placeholder="请选择品牌">
+      <el-option
+        v-for="item in brandOptions"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value">
+      </el-option>
+    </el-select>
+
+    <el-select v-model="mode_value" multiple placeholder="请选择类型">
+      <el-option
+        v-for="item in modeOptions"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value">
+      </el-option>
+    </el-select>
+
+
     <el-table
       :data="itemList"
       style="width: 100%"
@@ -63,6 +83,57 @@
 
     data(){
       return{
+        brandOptions:[
+          {'value': 'Fujikin'},
+          {'value': 'Tk-fujikin'},
+          {'value': 'Swagelok'},
+          {'value': 'Fitok'},
+          {'value': 'Unilok'},
+          {'value': 'Dk-lok'},
+          {'value': 'Super-lok'},
+          {'value': 'Horiba'},
+          {'value': 'Brooks'},
+          {'value': 'Tem-tech'},
+          {'value': 'CKD'},
+          {'value': 'Festo'},
+          {'value': 'Parker'},
+          {'value': 'SMC'},
+          {'value': 'Omron'},
+          {'value': '星奇'},
+          {'value': '皓固'},
+          {'value': 'Azibil'},
+          {'value': '科百特'},
+          {'value': '方顿'},
+          {'value': '创源'},
+          {'value': '洁安'},
+          {'value': 'Pall'},
+          {'value': 'Entegris'},
+          {'value': 'IFM'},
+          {'value': 'Wika'},
+          {'value': 'UE'},
+          {'value': 'Pureron'},
+          {'value': 'Nagano'},
+          {'value': 'Hamlet'},
+          {'value': 'Truck'},
+          {'value': 'Eazjoin'},
+          {'value': '聚创'},
+          {'value': '阀乐'}
+        ],
+        modeOptions:[
+          {'value': '球阀'},
+          {'value': 'VCR-隔膜阀'},
+          {'value': 'VCR-减压阀'},
+          {'value': 'VCR-单向阀'},
+          {'value': '接头'},
+          {'value': 'MFC'},
+          {'value': '过滤器'},
+          {'value': 'Gasket'},
+          {'value': 'igs-block'},
+          {'value': 'igs-隔膜阀'},
+          {'value': '波纹管阀'},
+          {'value': 'PT'},
+          {'value': '未知'}
+        ],
         itemList:[],
         file_md5:'',
         filename:'',
