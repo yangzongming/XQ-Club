@@ -31,6 +31,9 @@
       </el-option>
     </el-select>
 
+    <el-button size="small" type="primary">下载</el-button>
+
+
     <div style="margin-bottom: 15px;"></div>
 
     <el-table
