@@ -135,6 +135,10 @@
           {'value': 'PT'},
           {'value': '未知'}
         ],
+
+        brand_value = '',
+        mode_value = '',
+
         itemList:[],
         file_md5:'',
         filename:'',
