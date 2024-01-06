@@ -136,8 +136,8 @@
           {'value': '未知'}
         ],
 
-        brand_value = '',
-        mode_value = '',
+        brand_value: '',
+        mode_value: '',
 
         itemList:[],
         file_md5:'',
