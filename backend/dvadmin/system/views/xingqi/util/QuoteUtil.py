@@ -106,8 +106,8 @@ def saveMaterialPriceSummary(priceSummaryInfo):
 
 #根据brand和mode下载系统中的价格信息
 def downloadMaterialPriceWithBrandAndMode(brandModeInfo):
-    logger.info("打印内容"+brandModeInfo.get("brand"))
-    logger.info("打印内容" + brandModeInfo.get("mode"))
+    logger.info(brandModeInfo.get("brand"))
+    logger.info(brandModeInfo.get("mode"))
     pass
 
 #保存报价信息
