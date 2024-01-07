@@ -106,8 +106,6 @@ def saveMaterialPriceSummary(priceSummaryInfo):
 
 #根据brand和mode下载系统中的价格信息
 def downloadMaterialPriceWithBrandAndMode(brandModeInfo):
-    logger.info(brandModeInfo.get("brand"))
-    logger.info(brandModeInfo.get("mode"))
 
     sql = text("""
     
@@ -119,8 +117,23 @@ def downloadMaterialPriceWithBrandAndMode(brandModeInfo):
     WHERE material_brand = :material_brand AND material_mode = :material_mode LIMIT 100;
     
     """)
-    result = engine.execute(sql,{"material_brand":"Fujikin","material_mode":"接头"}).all()
+    result = engine.execute(sql,{"material_brand":brandModeInfo.get("brand"),"material_mode":brandModeInfo.get("mode")}).all()
     logger.info(result)
+
+    xheaders = u'规格型号,物料名称,类型,品牌,价格,报价数量,供应商,备注,原始文件'.split(',')
+    xls_lines = [xheaders]
+
+    for item in result:
+        xls_lines.append(
+            [item[0], item[1], item[2], item[3], item[4], item[5], item[6],
+             item[7], item[8]])
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    for line in xls_lines:
+        ws.append(line)
+    wb.save("/opt/excel/out_brand_price.xlsx")
+    send_email("supplier", "/opt/excel/out_brand_price.xlsx")
 
     pass
 
@@ -182,7 +195,7 @@ def handleQuoteFile(filename):
             "name": (sheet1.cell(row=row, column=1)).value,
             "number": (sheet1.cell(row=row, column=2)).value,
         })
-    print(material_list)
+    #print(material_list)
     for material in material_list:
         #print(material["name"])
         number = material["number"]
