@@ -179,7 +179,7 @@
           'brand': this.brand_value,
           'mode': this.mode_value,
         }
-        console.log('fuck')
+        console.log(data)
         upload.download_brand_price(data).then(res=>{
         })
       },
