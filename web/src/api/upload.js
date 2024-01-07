@@ -30,7 +30,7 @@ export default {
     })
   },
 
-  download_Brand_Price (data) {
+  download_brand_price (data) {
     return axios.post(urlPre + '/download_brand_price', data, {
     })
   },
