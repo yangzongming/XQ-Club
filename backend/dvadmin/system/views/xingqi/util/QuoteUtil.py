@@ -108,6 +108,20 @@ def saveMaterialPriceSummary(priceSummaryInfo):
 def downloadMaterialPriceWithBrandAndMode(brandModeInfo):
     logger.info(brandModeInfo.get("brand"))
     logger.info(brandModeInfo.get("mode"))
+
+    sql = text("""
+    
+    select m.material_number, m.material_name, m.material_mode, m.material_brand, mp.price, mp.amount, mps.supplier, mps.info, mps.filename from material AS m
+
+    INNER JOIN material_price AS mp ON m.material_id = mp.material_id
+    INNER JOIN material_price_summary AS mps ON mp.material_price_summary_id = mps.id
+
+    WHERE material_brand = :material_brand AND material_mode = :material_mode LIMIT 100;
+    
+    """)
+    result = engine.execute(sql,{"material_brand":"Fujikin","material_mode":"接头"}).all()
+    logger.info(result)
+
     pass
 
 #保存报价信息

@@ -7,6 +7,9 @@ engine = create_engine(db_info)      #创建引擎
 base = declarative_base(engine)     #使用declarative_base()函数来创建SQLORM基类
 session = sessionmaker(engine)()    #构建session对象
 
+#sqlalchemy使用教程
+#https://blog.csdn.net/a11131ghj/article/details/108226017
+
 #记录物料的报价信息
 class MaterialPrice(base):
     __tablename__ = 'material_price'
