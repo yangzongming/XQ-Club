@@ -114,10 +114,10 @@ def downloadMaterialPriceWithBrandAndMode(brandModeInfo):
     INNER JOIN material_price AS mp ON m.material_id = mp.material_id
     INNER JOIN material_price_summary AS mps ON mp.material_price_summary_id = mps.id
 
-    WHERE material_brand = :material_brand AND material_mode = :material_mode LIMIT 100;
+    WHERE material_brand IN :material_brand AND material_mode IN :material_mode LIMIT 100;
     
     """)
-    result = engine.execute(sql,{"material_brand":brandModeInfo.get("brand"),"material_mode":brandModeInfo.get("mode")}).all()
+    result = engine.execute(sql,{"material_brand":(brandModeInfo.get("brand")),"material_mode":(brandModeInfo.get("mode"))}).all()
     xheaders = u'规格型号,物料名称,类型,品牌,价格,报价数量,供应商,备注,原始文件'.split(',')
     xls_lines = [xheaders]
     logger.info(len(result))
