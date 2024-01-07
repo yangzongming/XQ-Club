@@ -31,7 +31,7 @@
       </el-option>
     </el-select>
 
-    <el-button size="small" type="primary" @click="downloadBrandPrice()>下载</el-button>
+    <el-button size="small" type="primary" @click="downloadBrandPrice()">下载</el-button>
 
 
     <div style="margin-bottom: 15px;"></div>
