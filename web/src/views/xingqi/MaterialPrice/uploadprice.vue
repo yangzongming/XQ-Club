@@ -21,7 +21,7 @@
         :value="item.value">
       </el-option>
     </el-select>
-
+    <div style="margin-right: 15px;"></div>
     <el-select v-model="mode_value" multiple placeholder="请选择类型">
       <el-option
         v-for="item in modeOptions"
@@ -30,7 +30,7 @@
         :value="item.value">
       </el-option>
     </el-select>
-
+    <div style="margin-right: 15px;"></div>
     <el-button size="small" type="primary">下载</el-button>
 
 
