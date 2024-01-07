@@ -175,8 +175,12 @@
 
       //下载系统中根据 品牌和类型的报价
       downloadBrandPrice(){
-
-
+        let data = {
+          'brand': this.brand_value,
+          'mode': this.mode_value,
+        }
+        upload.download_Brand_Price(data).then(res=>{
+        })
       },
     }
   }
