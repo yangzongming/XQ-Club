@@ -118,12 +118,11 @@ def downloadMaterialPriceWithBrandAndMode(brandModeInfo):
     
     """)
     result = engine.execute(sql,{"material_brand":brandModeInfo.get("brand"),"material_mode":brandModeInfo.get("mode")}).all()
-    logger.info(result)
-
     xheaders = u'规格型号,物料名称,类型,品牌,价格,报价数量,供应商,备注,原始文件'.split(',')
     xls_lines = [xheaders]
-
+    logger.info(len(result))
     for item in result:
+        logger.info(item)
         xls_lines.append(
             [item[0], item[1], item[2], item[3], item[4], item[5], item[6],
              item[7], item[8]])
