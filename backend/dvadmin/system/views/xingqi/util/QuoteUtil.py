@@ -106,7 +106,7 @@ def saveMaterialPriceSummary(priceSummaryInfo):
 
 #根据brand和mode下载系统中的价格信息
 def downloadMaterialPriceWithBrandAndMode(brandModeInfo):
-
+    logger.info(brandModeInfo.get("brand"))
     sql = text("""
     
     select m.material_number, m.material_name, m.material_mode, m.material_brand, mp.price, mp.amount, mps.supplier, mps.info, mps.filename from material AS m
@@ -133,8 +133,6 @@ def downloadMaterialPriceWithBrandAndMode(brandModeInfo):
         ws.append(line)
     wb.save("/opt/excel/out_brand_price.xlsx")
     send_email("supplier", "/opt/excel/out_brand_price.xlsx")
-
-    pass
 
 #保存报价信息
 def saveMaterialPriceList(list, material_price_summary_id):
