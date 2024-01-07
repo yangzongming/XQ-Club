@@ -21,7 +21,7 @@
         :value="item.value">
       </el-option>
     </el-select>
-    <div style="margin-right: 15px;"></div>
+
     <el-select v-model="mode_value" multiple placeholder="请选择类型">
       <el-option
         v-for="item in modeOptions"
@@ -30,8 +30,8 @@
         :value="item.value">
       </el-option>
     </el-select>
-    <div style="margin-right: 15px;"></div>
-    <el-button size="small" type="primary">下载</el-button>
+
+    <el-button size="small" type="primary" @click="downloadBrandPrice()>下载</el-button>
 
 
     <div style="margin-bottom: 15px;"></div>
@@ -171,6 +171,12 @@
       },
       addPriceSummaryDialogClosed(){
         this.addPriceSummaryDialogVisible = false;
+      },
+
+      //下载系统中根据 品牌和类型的报价
+      downloadBrandPrice(){
+
+
       },
     }
   }

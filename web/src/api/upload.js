@@ -15,7 +15,7 @@ export default {
       }
     })
   },
-  upload_material_price_file (file){
+  upload_material_price_file (file) {
     const formData = new FormData()
     formData.append('file', file)
     return axios.post(urlPre + '/upload_material_price_file', formData, {
@@ -24,12 +24,18 @@ export default {
       }
     })
   },
-  update_price_list (data){
+  update_price_list (data) {
     return axios.post(urlPre + '/material_price_update', data, {
 
     })
   },
-  save_material_price_summary (data){
+
+  download_Brand_Price (data) {
+    return axios.post(urlPre + 'download_brand_price', data, {
+    })
+  },
+
+  save_material_price_summary (data) {
     return axios.post(urlPre + '/save_material_price_summary', data, {
 
     })

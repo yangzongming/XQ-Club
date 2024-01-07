@@ -91,7 +91,7 @@ def handleMaterialPrice(filename, file_md5):
         'filename': filename,
     }
 
-
+#存储报价的介绍信息
 def saveMaterialPriceSummary(priceSummaryInfo):
     mps = MaterialPriceSummary(supplier = priceSummaryInfo.get("supplier"),
                                creator = 'leo',
@@ -104,6 +104,11 @@ def saveMaterialPriceSummary(priceSummaryInfo):
     result_id = engine.execute(sql).all()[0][0]
     saveMaterialPriceList(priceSummaryInfo['list'], result_id)
 
+#根据brand和mode下载系统中的价格信息
+def downloadMaterialPriceWithBrandAndMode(brandModeInfo):
+    logger.info("打印内容"+brandModeInfo.get("brand"))
+    logger.info("打印内容" + brandModeInfo.get("mode"))
+    pass
 
 #保存报价信息
 def saveMaterialPriceList(list, material_price_summary_id):

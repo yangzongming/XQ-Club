@@ -14,7 +14,7 @@ from .check import request_verify
 from dvadmin.utils.DateEncode import DateEncoder
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from .util.QuoteUtil import handleQuoteFile, handleMaterialPrice, saveMaterialPriceList, saveMaterialPriceSummary
+from .util.QuoteUtil import handleQuoteFile, handleMaterialPrice, saveMaterialPriceList, saveMaterialPriceSummary,downloadMaterialPriceWithBrandAndMode
 from dvadmin.system.views.xingqi.models.Material import Material, session
 import logging
 
@@ -40,6 +40,21 @@ def get_project_list(request):
     dic = craw_projectlist();
     return response_page_success(message="成功了", data=dic["data"], total=dic["total"], limit=dic["limit"],
                                  page=dic["page"])
+
+#下载数据 根据brand 和 mode 下载系统中的报价信息
+@csrf_exempt
+def download_brand_price(request):
+    logger.info("调用接口------download_brand_price")
+    if request.method == 'POST':
+        jsonData = json.loads(request.body)
+        if jsonData == None:
+            return JsonResponse({"code": 1}, safe=False)
+        else:
+            downloadMaterialPriceWithBrandAndMode(jsonData)
+            return JsonResponse({"code": 0}, safe=False)
+    else:
+        return JsonResponse({"code": 1, 'errmsg': '使用POST方法'}, safe=False)
+
 
 @csrf_exempt
 def save_material_price_summary(request):
