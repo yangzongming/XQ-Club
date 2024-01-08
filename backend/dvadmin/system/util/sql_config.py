@@ -8,7 +8,7 @@ db_info = f'mysql+pymysql://{username}:{password}@{host}:{port}/{db}'
 
 #品牌
 #Fujikin,Tk-fujikin,Swagelok,Fitok,Unilok,Dk-lok,Super-lok,Horiba,Brooks,Tem-tech,CKD,Festo,Parker,SMC,Omron,星奇,皓固,Azibil,科百特
-#方顿,创源,洁安,Pall,Entegris,IFM,Wika,UE,Pureron,Nagano,Hamlet,Truck,Eazjoin,聚创,阀乐
+#方顿,创源,洁安,Pall,Entegris,IFM,Wika,UE,Pureron,Nagano,Hamlet,Truck,Eazjoin,聚创,阀乐,Tescon
 brand_dic = {
     'Fujikin': '日本',
     'Tk-fujikin': '日本',
@@ -43,7 +43,8 @@ brand_dic = {
     'Truck': '美国',
     'Eazjoin': '中国',
     '聚创': '中国',
-    '阀乐': '中国'
+    '阀乐': '中国',
+    'Tescon': '美国'
 }
 
 #球阀,VCR-隔膜阀,VCR-减压阀,波纹管阀,VCR-单向阀,接头,MFC,过滤器,Gasket,igs-block,igs-隔膜阀,PT,未知
