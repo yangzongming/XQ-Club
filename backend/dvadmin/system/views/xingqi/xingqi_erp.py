@@ -113,8 +113,8 @@ def upload_material_price_file(request):
 @csrf_exempt
 def upload_file(request):
     if request.method == 'POST':
-        logger.info(request.user.id)
-        logger.info("用户id=======" + request.user.id)
+        #logger.info(request.user.id)
+        #logger.info("用户id=======" + request.user.id)
         file = request.FILES.get("file")
         if file:
             filePath = os.path.join(settings.EXCEL_ROOT, file.name)

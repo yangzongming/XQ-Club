@@ -2,12 +2,14 @@
  * “上传文件”相关接口
  */
 import axios from 'axios'
+import util from "@/libs/util";
 
 const urlPre = 'http://172.17.1.249:9602/api/system/xingqi'
 
 export default {
   uploadFile (file) {
     const formData = new FormData()
+    console.log(util.cookies.get('uuid'))
     formData.append('file', file)
     axios.post(urlPre + '/upload_file', formData, {
       headers: {
