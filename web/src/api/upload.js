@@ -14,7 +14,7 @@ export default {
     axios.post(urlPre + '/upload_file', formData, {
       headers: {
         'Content-Type': 'multipart/form-data;charset=UTF-8',
-        'uuid': util.cookies.get('uuid')
+        'Uid': util.cookies.get('uuid')
       }
     })
   },
