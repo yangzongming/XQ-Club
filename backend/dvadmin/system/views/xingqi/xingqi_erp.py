@@ -17,6 +17,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .util.QuoteUtil import handleQuoteFile, handleMaterialPrice, saveMaterialPriceList, saveMaterialPriceSummary,downloadMaterialPriceWithBrandAndMode
 from dvadmin.system.views.xingqi.models.Material import Material, session
 import logging
+from dvadmin.system.models import Users, Role, Dept
 
 logger = logging.getLogger(__name__)
 
@@ -114,6 +115,11 @@ def upload_material_price_file(request):
 def upload_file(request):
     if request.method == 'POST':
         uuid = request.POST.get("uuid", "")
+
+        instance = Users.objects.filter(id=uuid).first()
+        if instance:
+            logger.info(instance.email)
+
         logger.info(uuid)
         file = request.FILES.get("file")
         if file:
