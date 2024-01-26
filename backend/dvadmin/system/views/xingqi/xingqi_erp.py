@@ -116,10 +116,6 @@ def upload_file(request):
     if request.method == 'POST':
         uuid = request.POST.get("uuid", "")
 
-        instance = Users.objects.filter(id=uuid).first()
-        if instance:
-            logger.info(instance.email)
-
         logger.info(uuid)
         file = request.FILES.get("file")
         if file:
@@ -130,7 +126,13 @@ def upload_file(request):
                     #print(info)
             # 文件在服务端路径 获取配置
             # 保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
-            handleQuoteFile(filePath)
+
+            instance = Users.objects.filter(id=uuid).first()
+            email = "supplier"
+            if instance:
+                logger.info(instance.email)
+                email = instance.email
+            handleQuoteFile(filePath, email)
             return HttpResponse('上传成功！')
         else:
             return HttpResponse('失败了，文件错误')

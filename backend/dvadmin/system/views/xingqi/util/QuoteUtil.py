@@ -151,7 +151,7 @@ def saveMaterialPriceList(list, material_price_summary_id):
 
 
 #处理星奇系统里面的报价明细
-def handleQuoteFile(filename):
+def handleQuoteFile(filename, email):
     conn = pyodbc.connect('Driver={SQL Server};'
                           'Server=172.17.0.239,1433;'
                           'Database=AIS20230524185151;'
@@ -215,7 +215,11 @@ def handleQuoteFile(filename):
     cursor.close()
     conn.close()
     wb.save("/opt/excel/out_price.xlsx")
-    send_email("supplier", "/opt/excel/out_price.xlsx")
+
+    email_name = "supplier"
+    if email:
+        email_name = email.replace('@xingqikeji.com','')
+    send_email(email_name, "/opt/excel/out_price.xlsx")
 
 
 
