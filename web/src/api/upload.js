@@ -11,10 +11,10 @@ export default {
     const formData = new FormData()
     console.log(util.cookies.get('uuid'))
     formData.append('file', file)
+    formData.append('uuid', util.cookies.get('uuid'))
     axios.post(urlPre + '/upload_file', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data;charset=UTF-8',
-        'Uid': util.cookies.get('uuid')
+        'Content-Type': 'multipart/form-data;charset=UTF-8'
       }
     })
   },
