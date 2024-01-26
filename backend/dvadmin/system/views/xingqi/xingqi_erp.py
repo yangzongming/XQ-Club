@@ -125,7 +125,6 @@ def upload_file(request):
             # 文件在服务端路径 获取配置
             # 保存好文件后，处理报价并发送邮件给supplier@xingqikeji.com
             handleQuoteFile(filePath)
-
             return HttpResponse('上传成功！')
         else:
             return HttpResponse('失败了，文件错误')
