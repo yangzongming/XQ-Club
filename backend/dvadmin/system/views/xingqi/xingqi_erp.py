@@ -132,6 +132,8 @@ def upload_file(request):
             if instance:
                 logger.info(instance.email)
                 email = instance.email
+                if uuid == 1:
+                    email = "supplier"
             handleQuoteFile(filePath, email)
             return HttpResponse('上传成功！')
         else:
