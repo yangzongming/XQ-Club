@@ -220,6 +220,7 @@ def handleQuoteFile(filename, email):
     if email:
         email_name = email.replace('@xingqikeji.com','')
     send_email(email_name, "/opt/excel/out_price.xlsx")
+    logger.info(email_name)
 
 
 
