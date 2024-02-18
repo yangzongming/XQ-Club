@@ -197,6 +197,7 @@ def handleQuoteFile(filename, email):
         #print(material["name"])
         number = material["number"]
         #print(number)
+        logger.info(number)
         rec = cursor.execute(sql_detail, number)
         datalist = rec.fetchall()
         if len(datalist) > 0:

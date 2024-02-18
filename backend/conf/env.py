@@ -52,3 +52,6 @@ ALLOWED_HOSTS = ["*"]
 # 系统配置存放位置：redis/memory(默认)
 DISPATCH_DB_TYPE = 'redis'
 
+#企业ID
+#wwc4224eaf0e255805
+#YangZongMing
